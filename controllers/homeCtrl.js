@@ -6,4 +6,8 @@ module.exports={
     showContact: (req, res, next)=>{
         res.render('contact', { title: 'Express' });
     },
+
+    showAboutUs: (req, res, next)=>{
+        res.render('aboutUs', { title: 'Express' });
+    },
 }

@@ -5,5 +5,6 @@ var homeCtrl=require('../controllers/homeCtrl')
 /* GET home page. */
 router.get('/', homeCtrl.showHome);
 router.get('/contact', homeCtrl.showContact);
+router.get('/aboutUs', homeCtrl.showAboutUs);
 
 module.exports = router;

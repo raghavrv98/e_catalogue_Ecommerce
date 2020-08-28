@@ -47,7 +47,7 @@ integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeV
 	</div>
 <!-- //breadcrumbs -->
 <!-- contact -->
-<div style="padding-top:25px;" class="about">
+<div style="padding-top:10px;" class="about">
 	<h2 style="margin-bottom : 40px;" class="w3_agile_header">Contact</h2>
 		<div class="w3_agileits_contact_grids">
 			<div style="margin: 0px 20px;" class="col-md-5 w3_agileits_contact_grid_left">
@@ -58,21 +58,15 @@ integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeV
 			<div class="col-md-6 w3_agileits_contact_grid_right">
 				<h2 class="w3_agile_header">Leave a<span> Message</span></h2>
 
-				<form action="#" method="post">
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="text" id="input-25" name="Name" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-25">
-							<span class="input__label-content input__label-content--ichiro">Your Name</span>
-						</label>
-					</span>
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="email" id="input-26" name="Email" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-26">
-							<span class="input__label-content input__label-content--ichiro">Your Email</span>
-						</label>
-					</span>
-					<textarea name="Message" placeholder="Your message here..." required=""></textarea>
-					<input type="submit" value="Submit">
+				<form action="/contact" method="post">
+					<!-- <span class="input input--ichiro">
+					</span> -->
+					<input style="border-radius:10px" class="input__field" type="text" name="name" placeholder="Your Name" required/>
+					<input style="border-radius:10px" class="input__field" type="email" name="emailId" placeholder="Your Email" required />
+					<!-- <span class="input input--ichiro">
+					</span> -->
+					<textarea style="border-radius:10px" name="message" placeholder="Your message here..." required></textarea>
+					<input style="border-radius:10px" type="submit" value="Submit">
 				</form>
 			</div>
 			<div class="clearfix"> </div>

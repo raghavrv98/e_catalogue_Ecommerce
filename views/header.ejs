@@ -1,18 +1,125 @@
 	
+	<style>
+				.icon-circle {
+			border-radius: 50%;
+			border: 1px solid black;
+			height: 30px;
+			width: 30px;
+			position: relative;
+			margin-top: 15px;
+		}
+
+		.icon-circle-social {
+			border-radius: 50%;
+			border: 1px solid black;
+			height: 30px;
+			width: 30px;
+			position: relative;
+			display: inline-block;
+			margin-right: 20px;
+			color: black;
+		}
+
+		.icon-circle-social-fb:hover {
+			background-color: #3B5998;
+			color: white;
+			cursor: pointer;
+		}
+
+		.icon-circle-social-twitter:hover {
+			background-color: #0077B5;
+			color: white;
+			cursor: pointer;
+		}
+
+		.icon-circle-social-insta:hover {
+			background-color: #DE306B;
+			color: white;
+			cursor: pointer;
+		}
+
+		.icon-color {
+			color: black !important;
+		}
+
+		.icon-item {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			font-size: 20px;
+			transform: translate(-50%, -50%);
+		}
+
+		.icon-text {
+			position: absolute;
+			margin-top: -27px;
+			margin-left: 40px;
+		}
+
+		.contact-icon-position{
+			font-size: 20px;
+    margin-right: 6px;
+		}
+
+
+		@media screen and (min-width: 768px) {
+			.icon-position-contact{
+				margin-top: 40px;
+			}
+			.icon-position{
+			position: absolute;
+    top: 4%;
+    left: 25%;
+		}
+		}
+
+		@media screen and (max-width: 769px) {
+			.icon-position-contact{
+				margin-top: 80px;
+			}
+
+			.icon-position{
+			position: absolute;
+    top: 4%;
+    left: 33%;
+		}
+	}
+
+	</style>
+	
 	<!-- header -->
 
 	<div class="logo_products">
 		<div class="container">
-			<div style="margin-top: 25px !important;" class="w3ls_logo_products_left1">
-				<ul class="phone_email">
-					<li><i class="fa fa-phone" aria-hidden="true"></i>For order call us : +91 9219869825</li>
-
+			<div class="w3ls_logo_products_left1 icon-position-contact">
+				<ul style="margin-top: -33px;" class="phone_email">
+					<li><span class="contact-icon-position"><i style="transform: rotate(116deg);" class="fas fa-phone"></i></span>For order call us : +91 9219869825</li>
+					<li style="margin-left: 9px;"><span class="contact-icon-position"><i class="fab fa-whatsapp"></i></span>Or whatsapp us: +91 9045056444</li>
+					<li><div class="icon-position">
+						<a target="_blank" href="https://www.facebook.com/atozonlinemart5/">
+							<div class="icon-circle-social icon-circle-social-fb">
+								<div class="icon-item"><i class="fab fa-facebook-f"></i></div>
+							</div>
+						</a>
+						<a target="_blank" href="https://www.instagram.com/atoz_onlinemart/">
+							<div class="icon-circle-social icon-circle-social-insta">
+								<div class="icon-item"><i class="fab fa-instagram"></i></div>
+							</div>
+						</a>
+						<a target="_blank" href="https://www.instagram.com/raghav_rv98/">
+							<div class="icon-circle-social icon-circle-social-twitter">
+								<div class="icon-item"><i class="fab fa-twitter"></i></div>
+							</div>
+						</a>
+					</div></li>
 				</ul>
 			</div>
-			<div class="w3ls_logo_products_left">
-				<h1><a href="/"><img src="images/logo.png" alt="" /></a></h1>
+			<div style="margin-bottom:10px;" class="w3ls_logo_products_left">
+				<h1><a href="/"><img style="height: 65px;" src="images/logo.png" alt="" /></a></h1>
+				<p style="margin: 0px !important; color: #225C7C;">AtoZonlinemart</p>
 			</div>
-			<div style="margin-top: 15px !important;" class="w3l_search">
+			
+			<div style="margin-top: 15px !important; margin-bottom: 20px;" class="w3l_search">
 				<form action="#" method="post">
 					<input style="border-radius: 20px;" type="search" name="Search"
 						placeholder="Search for a Product..." required="">
@@ -22,8 +129,6 @@
 					</button>
 					<div class="clearfix"></div>
 				</form>
-			</div>
-
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -66,13 +171,13 @@
 								</div>
 							</ul>
 						</li> -->
-						<li><a href="#">Beauty & Cosmetic</a></li>
-						<li><a href="#">Cooking Oils</a></li>
-						<li><a href="#">Dal</a></li>
-						<li><a href="#">Deo & Perfumes</a></li>
-						<li><a href="#">Dry Fruits</a></li>
-						<li><a href="#">Health & Wellness</a></li>
-						<li><a href="#">Pickels</a></li>
+						<li><a href="/products">Cooking Oils</a></li>
+						<li><a href="/products">Dry Fruits</a></li>
+						<li><a href="/products">Pickels</a></li>
+						<li><a href="/products">Upvass Special</a></li>
+						<li><a href="/products">Deo & Perfumes</a></li>
+						<li><a href="/products">chocolate & Candies</a></li>
+						<li><a href="/products">Disposable Items</a></li>
 						<li><a href="/aboutUs">About Us</a></li>
 						<li><a href="/contact">Contact</a></li>
 					</ul>

@@ -1,3 +1,23 @@
+<style>
+@media screen and (min-width: 768px) {
+	.category-position{
+		text-align: right;
+	}
+
+	.ul-category{
+		margin-top: 65px;
+	}
+}
+
+@media screen and (max-width: 769px) {
+	.ul-category{
+		margin-top: -18px;
+	}
+}
+
+</style>
+
+
 <!-- //footer -->
 <div class="footer">
 	<div class="container">
@@ -17,36 +37,29 @@
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/">Home</a></li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/aboutUs">About Us</a></li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/contact">Contact</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/login">Login</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3 w3_footer_grid">
-				<h3>Category</h3>
+				<h3 class="category-position">Category</h3>
 				<ul class="info">
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Cooking Oils</a></li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Dry Fruits</a> </li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Pickels</a></li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Upvass Special</a></li>
-					<ul style="margin-top: 10px;" class="faq">
-						<li><a style="color: #FE9126; margin-left: 25px;" href="/products" title="click here">See more..</a>
-							<ul>
-								<br>
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Deo & Perfumes</a></li>
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Choclate & Candies</a></li>
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Disposable Items</a></li>
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Handwash</a></li>
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Mask & Sanitizer</a></li>
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Spices</a></li>
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Namkeen & Papad</a></li>
-							</ul>
-						</li>
-					</ul>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Deo & Perfumes</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Choclate & Candies</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3 w3_footer_grid">
-				<h3>Profile</h3>
-				<ul class="info">
-					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/login">Login</a></li>
+				<ul class="info ul-category">
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Disposable Items</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Handwash</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Mask & Sanitizer</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Spices</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/products">Namkeen & Papad</a></li>
 				</ul>
+
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -62,7 +75,6 @@
 </div>
 
 <!-- //footer -->
-
 	<!-- script for tabs -->
 	<script type="text/javascript">
 		$(function () {
@@ -85,5 +97,13 @@
 			});
 
 		});
+
+
+		function removeDummy() {
+    var elem = document.getElementById('dummy');
+    elem.parentNode.removeChild(elem);
+    return false;
+}
+
 	</script>
 	<!-- script for tabs -->

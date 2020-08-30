@@ -7,29 +7,68 @@
 	.ul-category{
 		margin-top: 65px;
 	}
+
+	#icon-position{
+		position: absolute;
+    left: 10%;
+    top: 70%;
+		}
 }
 
 @media screen and (max-width: 769px) {
 	.ul-category{
 		margin-top: -18px;
 	}
+
+	#icon-position{
+	    position: absolute;
+    left: 16%;
+    top: 26%;
+		}
 }
 
+#icon-circle-social {
+			border-radius: 50%;
+			border: none;
+			height: 30px;
+			width: 30px;
+			position: relative;
+			display: inline-block;
+			margin-right: 20px;
+			color: black;
+		}
 </style>
 
 
 <!-- //footer -->
-<div class="footer">
+<div style="position: relative;" class="footer">
 	<div class="container">
 		<div class="w3_footer_grids">
 			<div class="col-md-3 w3_footer_grid">
 				<h3>Contact</h3>
 
-				<ul class="address">
+				<ul style="margin-bottom: 55px;" class="address">
 					<li><i class="fa fa-home"></i>Shri Ram Provision Store, Lalaram <span>marg, near Gurudwara, Ghantaghar</span></li>
 					<li><i class="far fa-envelope"></i><a href="mailto:atozonlinemart5@gmail.com">atozonlinemart5@gmail.com</a></li>
 					<li><i class="fas fa-phone"></i>(+91) 9219869825, 9045056444, <span>9997610265</span></li>
 				</ul>
+			</div>
+			<div id ="icon-position">
+				<a target="_blank" href="https://www.facebook.com/atozonlinemart5/">
+					<div id="icon-circle-social" class="icon-circle-social-fb">
+						<div class="icon-item"><i style="color: white;" class="fab fa-facebook-f"></i></div>
+					</div>
+				</a>
+				<a target="_blank" href="https://www.instagram.com/atoz_onlinemart/">
+					<div id="icon-circle-social" class="icon-circle-social-insta">
+						<div class="icon-item"><i style="color: white;" class="fab fa-instagram"></i></div>
+					</div>
+				</a>
+				<a target="_blank" href="https://twitter.com/atoz_onlinemart?s=09">
+					<div id="icon-circle-social" class="icon-circle-social-twitter">
+						<div class="icon-item"><i style="color: white;" class="fab fa-twitter"></i></div>
+					</div>
+				</a>
 			</div>
 			<div class="col-md-3 w3_footer_grid">
 				<h3>Information</h3>

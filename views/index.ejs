@@ -53,6 +53,7 @@
 				height: 265px;
 				width: 265px;
 				border-radius: 50%;
+				position: relative; 
 			}
 
 			.category-img:hover {
@@ -78,6 +79,10 @@
 			margin-bottom: 25px;
 		}
 
+		.commingSoonImg{
+				opacity: 0.5;
+			}
+
 		}
 
 		@media screen and (max-width: 769px) {
@@ -102,11 +107,16 @@
 				position: absolute;
 				transform: translate(25%);
 				top: 25%;
-				left: 0%;
+				left: 9%;
 				font-size: 23px !important;
 				color: #FE9126 !important;
 				z-index: 10;
 				text-shadow: 0 0 black;
+			}
+
+			.commingSoonImg{
+				margin-left: 25px !important; 
+				opacity: 0.5;
 			}
 
 			.category-heading {
@@ -520,8 +530,7 @@
 												<div class="snipcart-item block">
 													<p class="commingSoonText">Coming Soon..</p>
 													<div class="snipcart-thumb">
-														<img style="position: relative; opacity: 0.3;"
-															class="category-img" title=" " alt=" "
+														<img class="category-img commingSoonImg" title=" " alt=" "
 															src="images/s2.png" />
 													</div>
 												</div>

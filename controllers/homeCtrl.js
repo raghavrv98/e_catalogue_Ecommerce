@@ -56,7 +56,7 @@ module.exports={
         var message = req.body.message
 
         var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n Message : "+ message
-        mailUtils.sendMail('teamletscipher@gmail.com', "Enquiry Mail", messageBody)
+        mailUtils.sendMail('atozonlinemart5@gmail.com', "Enquiry Mail", messageBody)
         res.render('contact', {
         });
     },

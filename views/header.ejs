@@ -123,6 +123,14 @@
 	.phone_email li {
 		margin-top: 10px;
 	}
+
+	.search-box {
+		border-radius: 5px;
+		height: 37px;
+		margin-right: 5px;
+		width: 88%;
+		border: 1px solid black;
+	}
 </style>
 
 <!-- header -->
@@ -138,7 +146,7 @@
 			</ul>
 		</div>
 		<div style="margin-bottom:10px;" class="w3ls_logo_products_left">
-			<h1><a href="/"><img style="height: 65px;" src="images/logo.png" alt="" /></a></h1>
+			<h1><a href="/"><img style="height: 65px;" src="http://localhost:3001/images/logo.png" alt="" /></a></h1>
 			<p style="margin: 0px !important; color: #225C7C;">A to Z online mart</p>
 		</div>
 		<div class="icon-position">
@@ -158,12 +166,18 @@
 				</div>
 			</a>
 		</div>
-		<div style="margin-top: 45px !important; margin-bottom: 20px;" class="w3l_search">
+		<div style="margin-top: 45px !important; margin-bottom: 20px; " class="w3l_search">
+			<% if (admin) { %>
+			<% console.log("admin" ) %>
+			<% } else { %>
+			<% console.log('heheeh in else') %> <input type="text" style="display: none;" value="<%= autosearch%>"
+				placeholder="Type something..." id="myInput">
+			<% } %>
+
 			<form action="#" method="post">
-				<input style="border-radius: 20px;" type="search" name="Search" placeholder="Search for a Product..."
-					required="">
-				<button style="border-radius: 25px;" type="submit" class="btn btn-default search"
-					aria-label="Left Align">
+				<input class="search-box" id="search" type="text" name="Search" placeholder="Search for a Product..."
+					autocomplete="off" required="">
+				<button type="submit" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -210,13 +224,13 @@
 								</div>
 							</ul>
 						</li> -->
-						<li><a href="/products">Cooking Oils</a></li>
-						<li><a href="/products">Dry Fruits</a></li>
-						<li><a href="/products">Pickels</a></li>
-						<li><a href="/products">Upvass Special</a></li>
-						<li><a href="/products">Deo & Perfumes</a></li>
-						<li><a href="/products">chocolate & Candies</a></li>
-						<li><a href="/products">Disposable Items</a></li>
+						<li><a href="/user/grocery">Grocery</a></li>
+						<li><a href="/user/personal_care">Personal Care</a></li>
+						<li><a href="/user/health_wellness">Health & Wellness</a></li>
+						<li><a href="/user/beauty_cosmetics">Beauty & Cosmetics</a></li>
+						<li><a href="/user/pickles">Pickles</a></li>
+						<li><a href="/user/new_arrivals">New Arrivals</a></li>
+						<li><a href="/user/breakfast_dairy">Breakfast & Dairy</a></li>
 						<li><a href="/aboutUs">About Us</a></li>
 						<li><a href="/contact">Contact</a></li>
 					</ul>
@@ -226,3 +240,25 @@
 	</div>
 
 	<!-- //navigation -->
+
+	<script>
+		var x, autoDataList
+		window.onload = function () {
+			x = document.getElementById("myInput").value
+			autoDataList = JSON.parse(x)
+
+			document.getElementById('search').addEventListener('input', (e) => {
+				let fruitsArray = [];
+				if (e.target.value) {
+					fruitsArray = autoDataList.filter(fruit => fruit.toLowerCase().startsWith(e.target.value));
+					console.log('fruitsArray: ', fruitsArray);
+				}
+				showFruitsArray(fruitsArray);
+			})
+
+		};
+		function showFruitsArray(fruitsArray) {
+			const html = !fruitsArray.length ? "No results found" : fruitsArray.join('\n');
+			document.querySelector('ul').innerHTML = html
+		}
+	</script>

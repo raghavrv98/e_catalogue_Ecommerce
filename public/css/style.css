@@ -116,7 +116,7 @@ i.fa.fa-phone {
 }
 button.btn.btn-default.search {
     background: #fe9126;
-    padding: 11px 12px 11px;
+    padding: 8px;
     float: right;
     outline: none;
     border: none;
@@ -1242,7 +1242,7 @@ h3.w3ls-title.w3ls-title1 {
     font-size: 2.5em;
 }
 .faq > li > a {
-    width: 100%;
+    width: 10%;
     display: block;
     position: relative;
     color: #fff;

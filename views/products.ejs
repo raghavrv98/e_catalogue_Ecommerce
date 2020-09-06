@@ -5,7 +5,7 @@
 	<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Groceries ::
 		w3layouts</title>
 
-	<link rel="icon" href="images/logo.png">
+	<link rel="icon" href="http://localhost:3001/images/logo.png">
 
 	<!-- for-mobile-apps -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,19 +17,19 @@
 		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 	<!-- //for-mobile-apps -->
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="http://localhost:3001/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="http://localhost:3001/css/style.css" rel="stylesheet" type="text/css" media="all" />
 
 	<!-- font-awesome icons -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 	<!-- js -->
-	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="http://localhost:3001/js/jquery-1.11.1.min.js"></script>
 
 	<!-- start-smoth-scrolling -->
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript" src="http://localhost:3001/js/move-top.js"></script>
+	<script type="text/javascript" src="http://localhost:3001/js/easing.js"></script>
 
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
@@ -43,16 +43,21 @@
 	<style>
 		.scrollbar-product {
 			overflow: auto;
-			height: 128vh;
+			height: 122vh;
 			border: 1px solid gray;
 			border-radius: 10px;
+		}
+
+		.product-image {
+			height: 180px;
+			width: 180px;
 		}
 
 		@media screen and (min-width: 768px) {
 			.categories ul li {
 				display: block;
 				font-size: 20px;
-				margin: 10px 40px;
+				margin: 10px 20px;
 			}
 		}
 
@@ -62,6 +67,24 @@
 				font-size: 20px;
 				margin: 10px 0px;
 			}
+		}
+
+		.down-arrow {
+			display: inline;
+			padding: 0px 10px 0px;
+			position: absolute;
+			top: 63px;
+		}
+
+		.main-heading-product {
+			display: inline !important;
+			color: gray;
+			font-size: 23px;
+			cursor: pointer;
+		}
+
+		.main-heading-product:hover {
+			color: #FE9126;
 		}
 
 		.categories ul li a {
@@ -87,7 +110,7 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="/"><span class="fa fa-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Groceries</li>
+				<li class="active">Products</li>
 			</ol>
 		</div>
 	</div>
@@ -95,53 +118,50 @@
 	<!--- groceries --->
 	<div class="products">
 		<div class="container">
-			<div class="col-md-4 products-left">
+			<div class="col-md-3 products-left">
 				<div class="categories">
 					<h2>Categories</h2>
 					<ul style="margin-top: 10px;" class="faq">
-						<% for(var i = 0; i<10; i++){ %>
-						<li><a href="#" title="click here"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fruits
-								And
-								Vegetables</a>
+						<%  for (const [key, value] of Object.entries(productCategoryObject)) { %>
+						<li>
+							<div class="main-heading-product" value="<%= key%>"
+								onclick="location.href='/user/<%= key%>'"><%= key%></div>
+							<% if(productCategoryObject[key].length > 1) { %>
+							<a style="display: inline; padding: 0px 10px; float: right;" href="#"><i
+									class="fa fa-angle-down" aria-hidden="true"></i></a>
+							<% } %>
 							<ul>
-								<li style="font-size: 16px;"><a href="#"><i class="fa fa-arrow-right"
-											aria-hidden="true"></i>Cuts &
-										Sprouts</a></li>
-								<li style="font-size: 16px;"><a href="#"><i class="fa fa-arrow-right"
-											aria-hidden="true"></i>Flowers</a>
+								<% if(productCategoryObject[key].length > 1) { %>
+								<% for (let i = 0 ; i < productCategoryObject[key].length ; i++) { %>
+								<li style="font-size: 16px;"><a
+										href="/user/<%= key%>/<%= productCategoryObject[key][i].name%>"><i
+											class="fa fa-arrow-right"
+											aria-hidden="true"></i><%= productCategoryObject[key][i].displayName%></a>
 								</li>
-								<li style="font-size: 16px;"><a href="#"><i class="fa fa-arrow-right"
-											aria-hidden="true"></i>Fresh Herbs
-										& Seasonings</a></li>
-								<li style="font-size: 16px;"><a href="#"><i class="fa fa-arrow-right"
-											aria-hidden="true"></i>Fresh
-										Vegetables</a> </li>
-								<li style="font-size: 16px;"><a href="#"><i class="fa fa-arrow-right"
-											aria-hidden="true"></i>International Vegetables</a> </li>
-								<li style="font-size: 16px;"><a href="#"><i class="fa fa-arrow-right"
-											aria-hidden="true"></i>Organic
-										Fruits & Vegetables</a></li>
+								<% } %>
+								<% } %>
 							</ul>
 						</li>
-					<% } %>
+						<% } %>
 					</ul>
 				</div>
 			</div>
-			<div class="scrollbar-product" class="col-md-8 products-right">
+			<div class="scrollbar-product" class="col-md-9 products-right">
 				<div class="agile_top_brands_grids">
 
-					<% for(var i = 0; i<12; i++){ %>
-					<div style="margin-bottom: 15px;" class="col-md-4 top_brand_left">
+					<% for(var i = 0; i< products.length; i++){ %>
+					<div style="margin-bottom: 15px; padding: 0px 10px;" class="col-md-4 top_brand_left">
 						<div style="border-radius:10px;" class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid1">
-									<figure>
+									<figure style="text-align: center;">
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.html"><img title=" " alt=" "
-														src="images/babyCare.jpg"></a>
-												<p>Channa</p>
-												<h4>₹35.99 <span>₹55.00</span></h4>
+												<img class="product-image" title=" " alt=" "
+													src="http://localhost:3001/uploads/<%= products[i].img%>">
+												<p><%= products[i].name %></p>
+												<h4>₹<%= products[i].actualPrice %>
+													<span>₹<%= products[i].cuttingPrice %></span></h4>
 											</div>
 										</div>
 									</figure>
@@ -161,29 +181,20 @@
 
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="http://localhost:3001/js/bootstrap.min.js"></script>
 	<!-- top-header and slider -->
 	<!-- here stars scrolling icon -->
 
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-			*/
-
 			$().UItoTop({ easingType: 'easeOutQuart' });
 
 		});
 	</script>
 
 	<!-- //here ends scrolling icon -->
-	<script src="js/minicart.min.js"></script>
+	<script src="http://localhost:3001/js/minicart.min.js"></script>
 	<script>
 		// Mini Cart
 		paypal.minicart.render({
@@ -195,8 +206,8 @@
 		}
 	</script>
 	<!-- main slider-banner -->
-	<script src="js/skdslider.min.js"></script>
-	<link href="css/skdslider.css" rel="stylesheet">
+	<script src="http://localhost:3001/js/skdslider.min.js"></script>
+	<link href="http://localhost:3001/css/skdslider.css" rel="stylesheet">
 	<script type="text/javascript">
 		jQuery(document).ready(function () {
 			jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });

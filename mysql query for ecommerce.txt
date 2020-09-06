@@ -1,0 +1,85 @@
+DROP TABLE IF EXISTS hair_care;
+create table hair_care(
+   id INT NOT NULL AUTO_INCREMENT,
+   img varchar(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+    creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+INSERT INTO hair_care 
+(img, name, actualPrice, cuttingPrice) 
+VALUES ('', 'milk', 25, 30);
+
+
+UPDATE health_wellness SET img='/images/healthWellness.jpg',name='Health & Wellness',actualPrice=20, cuttingPrice=30 WHERE id=2;
+
+DELETE FROM health_wellness WHERE id = 1;
+
+select * from health_wellness;
+
+-------------------------------------------------------------
+
+DROP TABLE IF EXISTS product_categories;
+create table product_categories(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   display_category VARCHAR(255) NOT NULL,
+   sub_category VARCHAR(255) NOT NULL,
+   display_sub_category VARCHAR(255) NOT NULL,
+    creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('grocery', 'Grocery','dal', 'Dal');
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('grocery', 'Grocery', 'salt_sugar', 'Salt/Sugar');
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('grocery', 'Grocery', 'rice_rice_products', 'Rice & Rice Products');
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('grocery', 'Grocery', 'dry_fruits', 'Dry Fruits');
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('grocery', 'Grocery', 'flours_grains', 'Flours & Grains');
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('grocery', 'Grocery', 'cooking_oil_ghee', 'Cooking Oil & Ghee');
+
+
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('personal Care', 'Personal Care', 'deo_perfumes', 'Deo & Perfumes');
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('personal Care', 'Personal Care', 'shampoo_conditioner', 'Shampoo & Conditioner');
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('personal Care', 'Personal Care','hair_care', 'Hair Care');
+
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('health_wellness', 'Health & Wellness', '', '');
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('beauty_cosmetics', 'Beauty & Cosmetics', '', '');
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('pickles', 'Pickles', '', '');
+
+INSERT INTO product_categories (category, display_category, sub_category, display_sub_category) VALUES ('sunglasses_watches', 'Sunglasses & Watches', '', '');
+
+UPDATE product_categories SET category='cleaning_household', display_category = 'Cleaning & Household', sub_category='', display_sub_category = ''  WHERE id=17;
+
+
+DELETE FROM product_categories WHERE id = 1;
+
+select * from product_categories;
+=================================================================
+
+DROP TABLE IF EXISTS product_sub_categories;
+create table product_sub_categories(
+   id INT NOT NULL AUTO_INCREMENT,
+   name VARCHAR(255) NOT NULL,
+    creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+
+INSERT INTO product_sub_categories (name) VALUES ('Grocery');
+INSERT INTO product_sub_categories (name) VALUES ('Personal Care');
+INSERT INTO product_sub_categories (name) VALUES ('Health & Wellness');
+INSERT INTO product_sub_categories (name) VALUES ('Beauty & Cosmetics');
+INSERT INTO product_sub_categories (name) VALUES ('Pickles');
+
+
+UPDATE product_sub_categories SET name='Grocery' WHERE id=1;
+
+DELETE FROM product_sub_categories WHERE id = 1;
+
+select * from product_sub_categories;
+
+
+=====================================================================

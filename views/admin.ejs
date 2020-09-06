@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Groceries ::
+		w3layouts</title>
+
+	<link rel="icon" href="http://localhost:3001/images/logo.png">
+
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords"
+		content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+	<!-- //for-mobile-apps -->
+	<link href="http://localhost:3001/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="http://localhost:3001/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+	<!-- font-awesome icons -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+	<!-- js -->
+	<script src="http://localhost:3001/js/jquery-1.11.1.min.js"></script>
+
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript" src="http://localhost:3001/js/move-top.js"></script>
+	<script type="text/javascript" src="http://localhost:3001/js/easing.js"></script>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<style>
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+			width: 100%;
+			border: 1px solid #ddd;
+		}
+
+		th,
+		td {
+			text-align: center;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #f2f2f2
+		}
+
+		.scrollbar-product {
+			overflow: auto;
+			height: 128vh;
+			border-radius: 10px;
+		}
+
+		.product-image {
+			height: 180px;
+			width: 180px;
+		}
+
+		@media screen and (min-width: 768px) {
+			.categories ul li {
+				display: block;
+				font-size: 20px;
+				margin: 10px 22px;
+			}
+		}
+
+		@media screen and (max-width: 769px) {
+			.categories ul li {
+				display: block;
+				font-size: 20px;
+				margin: 10px 0px;
+			}
+		}
+
+		.down-arrow {
+			display: inline;
+			padding: 0px 10px 0px;
+			position: absolute;
+			top: 63px;
+		}
+
+		.main-heading-product {
+			display: inline !important;
+			color: gray;
+			font-size: 23px;
+			cursor: pointer;
+		}
+
+		.main-heading-product:hover {
+			color: #FE9126;
+		}
+
+
+		.categories ul li a {
+			color: #999;
+			text-decoration: none;
+		}
+
+		.categories ul li a:hover {
+			color: #3399cc;
+		}
+
+		.categories ul li span {
+			float: right;
+		}
+	</style>
+</head>
+
+<body>
+	<% include header %>
+
+	<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="/"><span class="fa fa-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active">Products</li>
+			</ol>
+		</div>
+	</div>
+	<!-- //breadcrumbs -->
+	<!--- groceries --->
+	<div style="padding-top:10px;" class="products">
+		<div class="container">
+			<h2 style="margin-bottom : 40px;" class="w3_agile_header"><%= id%></h2>
+			<% if (message.length > 0) { %>
+			<div class="alert alert-success col-sm-12"><%= message %></div>
+			<% } %>
+			<div class="col-md-3 products-left">
+				<div class="categories">
+					<h2>Categories</h2>
+					<ul style="margin-top: 10px;" class="faq">
+						<%  for (const [key, value] of Object.entries(productCategoryObject)) { %>
+						<li>
+							<div class="main-heading-product" value="<%= key%>"
+								onclick="location.href='/admin-category/<%= key%>'"><%= key%></div>
+							<% if(productCategoryObject[key].length > 1) { %>
+							<a style="display: inline; padding: 0px 10px; float: right;" href="#"><i
+									class="fa fa-angle-down" aria-hidden="true"></i></a>
+							<% } %>
+							<ul>
+								<% if(productCategoryObject[key].length > 1) { %>
+								<% for (let i = 0 ; i < productCategoryObject[key].length ; i++) { %>
+								<li style="font-size: 16px;"><a
+										href="/admin-subCategory/<%= key%>/<%= productCategoryObject[key][i].name%>"><i
+											class="fa fa-arrow-right"
+											aria-hidden="true"></i><%= productCategoryObject[key][i].displayName%></a>
+								</li>
+								<% } %>
+								<% } %>
+							</ul>
+						</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+			<div class="scrollbar-product" class="col-md-9 products-right">
+				<% if(subCategory !="") { %><h4 style="margin-bottom : 20px;" class="w3_agile_header"><%= subCategory%>
+				</h4> <% } %>
+
+				<div style="overflow-x:auto;">
+					<table>
+						<tr>
+							<th>Image</th>
+							<th>Name</th>
+							<th>Actual Price</th>
+							<th>Cutting Price</th>
+							<th>Action</th>
+						</tr>
+						<tr>
+
+							<% if (subCategory == "") { %>
+							<% if (editProduct) { %>
+							<form role="form" method="post" action="/admin-category-add/<%= id %>/<%= editProduct.id%>"
+								enctype="multipart/form-data">
+								<td><input type="file" accept="image/*" value="<%= editProduct.img %>"
+										name="uploaded_image" required></td>
+								<td><input type="text" value="<%= editProduct.name %>" name="name" required></td>
+								<td><input style="width: 75%;" type="number" value="<%= editProduct.actualPrice %>"
+										name="actualPrice" required></td>
+								<td><input style="width: 75%;" type="number" value="<%= editProduct.cuttingPrice %>"
+										name="cuttingPrice" required></td>
+								<td><input type="submit" value="Add/Update"></td>
+							</form>
+
+							<% } else { %>
+							<form role="form" method="post" action="/admin-category-add/<%= id %>"
+								enctype="multipart/form-data">
+								<td><input type="file" name="uploaded_image" required></td>
+								<td><input type="text" name="name" required></td>
+								<td><input style="width: 75%;" type="number" name="actualPrice" required></td>
+								<td><input style="width: 75%;" type="number" name="cuttingPrice" required></td>
+								<td><input type="submit" value="Add/Update"></td>
+							</form>
+							<% } %>
+
+							<% } else { %>
+
+							<% if (editProduct) { %>
+							<form role="form" method="post"
+								action="/admin-subCategory-add/<%= id %>/<%= subCategory %>/<%= editProduct.id%>"
+								enctype="multipart/form-data">
+								<td><input type="file" accept="image/*" value="<%= editProduct.img %>"
+										name="uploaded_image" required></td>
+								<td><input type="text" value="<%= editProduct.name %>" name="name" required></td>
+								<td><input style="width: 75%;" type="number" value="<%= editProduct.actualPrice %>"
+										name="actualPrice" required></td>
+								<td><input style="width: 75%;" type="number" value="<%= editProduct.cuttingPrice %>"
+										name="cuttingPrice" required></td>
+								<td><input type="submit" value="Add/update"></td>
+							</form>
+
+							<% } else { %>
+							<form role="form" method="post" action="/admin-subCategory-add/<%= id %>/<%= subCategory %>"
+								enctype="multipart/form-data">
+								<td><input type="file" name="uploaded_image" required></td>
+								<td><input type="text" name="name" required></td>
+								<td><input style="width: 75%;" type="number" name="actualPrice" required></td>
+								<td><input style="width: 75%;" type="number" name="cuttingPrice" required></td>
+								<td><input type="submit" value="Add/update"></td>
+							</form>
+							<% } %>
+							<% } %>
+
+
+						</tr>
+					</table>
+				</div>
+				<br>
+				<hr style="border: 1px solid black;"><br>
+				<div style="overflow-x:auto;">
+					<table>
+						<tr>
+							<th>Image</th>
+							<th>Name</th>
+							<th>Actual Price</th>
+							<th>Cutting Price</th>
+							<th colspan="2">Action</th>
+						</tr>
+						<% for(var i in products) { %>
+						<tr>
+							<td><img style="height: 40px;" src="http://localhost:3001/uploads/<%= products[i].img%>">
+							</td>
+							<td><input disabled type="text" value="<%= products[i].name%>"></td>
+							<td><input disabled style="width: 75%;" value="<%= products[i].actualPrice%>" type="number">
+							</td>
+							<td><input disabled style="width: 75%;" value="<%= products[i].cuttingPrice%>"
+									type="number"></td>
+							<form role="form" method="post" action="/admin-edit" enctype="multipart/form-data">
+								<td style="display: none;"><input style="width: 75%;" name="editId"
+										value="<%= products[i].id%>" type="number"></td>
+								<td style="display: none;"><input style="width: 75%;" name="category" value="<%= id%>"
+										type="text"></td>
+								<td style="display: none;"><input style="width: 75%;" name="subCategory"
+										value="<%= subCategory%>" type="text"></td>
+								<td><button type="submit">Edit</button></td>
+							</form>
+							<form role="form" method="post" action="/admin-delete" enctype="multipart/form-data">
+								<td style="display: none;"><input style="width: 75%;" name="deleteId"
+										value="<%= products[i].id%>" type="number"></td>
+								<td style="display: none;"><input style="width: 75%;" name="category" value="<%= id%>"
+										type="text"></td>
+								<td style="display: none;"><input style="width: 75%;" name="subCategory"
+										value="<%= subCategory%>" type="text"></td>
+								<td><button type="submit"
+										onclick="return confirm('Are you sure you want to Delete?')">Delete</button>
+								</td>
+							</form>
+						</tr>
+						<% } %>
+					</table>
+				</div>
+				<!-- <div class="agile_top_brands_grids">
+
+					<% for(var i = 0; i<12; i++){ %>
+					<div style="margin-bottom: 15px;" class="col-md-4 top_brand_left">
+						<div style="border-radius:10px;" class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="single.html"><img class="product-image" title=" " alt=" "
+														src="images/babyCare.jpg"></a>
+												<p>Channa</p>
+												<h4>₹35.99 <span>₹55.00</span></h4>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+					<% } %>
+					<div class="clearfix"> </div>
+				</div> -->
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!--- groceries --->
+	<% include footer %>
+
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="http://localhost:3001/js/bootstrap.min.js"></script>
+	<!-- top-header and slider -->
+	<!-- here stars scrolling icon -->
+
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$().UItoTop({ easingType: 'easeOutQuart' });
+
+		});
+	</script>
+
+	<!-- //here ends scrolling icon -->
+	<script src="http://localhost:3001/js/minicart.min.js"></script>
+	<script>
+		// Mini Cart
+		paypal.minicart.render({
+			action: '#'
+		});
+
+		if (~window.location.search.indexOf('reset=true')) {
+			paypal.minicart.reset();
+		}
+	</script>
+	<!-- main slider-banner -->
+	<script src="http://localhost:3001/js/skdslider.min.js"></script>
+	<link href="http://localhost:3001/css/skdslider.css" rel="stylesheet">
+	<script type="text/javascript">
+		jQuery(document).ready(function () {
+			jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
+
+			jQuery('#responsive').change(function () {
+				$('#responsive_wrapper').width(jQuery(this).val());
+			});
+
+		});
+	</script>
+	<!-- //main slider-banner -->
+
+</body>
+
+</html>

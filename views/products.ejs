@@ -122,21 +122,20 @@
 				<div class="categories">
 					<h2>Categories</h2>
 					<ul style="margin-top: 10px;" class="faq">
-						<%  for (const [key, value] of Object.entries(productCategoryObject)) { %>
+						<%  for (let i = 0; i < productCategoryList.length; i++) { %>
 						<li>
-							<div class="main-heading-product" value="<%= key%>"
-								onclick="location.href='/user/<%= key%>'"><%= key%></div>
-							<% if(productCategoryObject[key].length > 1) { %>
+							<div class="main-heading-product" value="<%= productCategoryList[i].name%>" onclick="location.href='/user/<%= productCategoryList[i].name%>'"><%= productCategoryList[i].displayName%></div>
+							<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
 							<a style="display: inline; padding: 0px 10px; float: right;" href="#"><i
 									class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<% } %>
 							<ul>
-								<% if(productCategoryObject[key].length > 1) { %>
-								<% for (let i = 0 ; i < productCategoryObject[key].length ; i++) { %>
+								<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
+								<% for (const [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
 								<li style="font-size: 16px;"><a
-										href="/user/<%= key%>/<%= productCategoryObject[key][i].name%>"><i
+										href="/user/<%= productCategoryList[i].name%>/<%= value%>"><i
 											class="fa fa-arrow-right"
-											aria-hidden="true"></i><%= productCategoryObject[key][i].displayName%></a>
+											aria-hidden="true"></i><%= key%></a>
 								</li>
 								<% } %>
 								<% } %>

@@ -167,13 +167,6 @@
 			</a>
 		</div>
 		<div style="margin-top: 45px !important; margin-bottom: 20px; " class="w3l_search">
-			<% if (admin) { %>
-			<% console.log("admin" ) %>
-			<% } else { %>
-			<% console.log('heheeh in else') %> <input type="text" style="display: none;" value="<%= autosearch%>"
-				placeholder="Type something..." id="myInput">
-			<% } %>
-
 			<form action="#" method="post">
 				<input class="search-box" id="search" type="text" name="Search" placeholder="Search for a Product..."
 					autocomplete="off" required="">
@@ -224,13 +217,13 @@
 								</div>
 							</ul>
 						</li> -->
-						<li><a href="/user/grocery">Grocery</a></li>
-						<li><a href="/user/personal_care">Personal Care</a></li>
-						<li><a href="/user/health_wellness">Health & Wellness</a></li>
-						<li><a href="/user/beauty_cosmetics">Beauty & Cosmetics</a></li>
+						<li><a href="/user/cooking_oils">Cooking Oils</a></li>
+						<li><a href="/user/dry_fruits">Dry Fruits</a></li>
 						<li><a href="/user/pickles">Pickles</a></li>
-						<li><a href="/user/new_arrivals">New Arrivals</a></li>
-						<li><a href="/user/breakfast_dairy">Breakfast & Dairy</a></li>
+						<li><a href="/user/upvaas_fast_special">Upvaas Special</a></li>
+						<li><a href="/user/deo_perfumes">Deo & Perfumes</a></li>
+						<li><a href="#">Chocolate & Candies</a></li>
+						<li><a href="/user/disposable_items">Disposable Items</a></li>
 						<li><a href="/aboutUs">About Us</a></li>
 						<li><a href="/contact">Contact</a></li>
 					</ul>
@@ -241,6 +234,8 @@
 
 	<!-- //navigation -->
 
+	
+	<!-- for autocomplete List  -->
 	<script>
 		var x, autoDataList
 		window.onload = function () {
@@ -251,11 +246,9 @@
 				let fruitsArray = [];
 				if (e.target.value) {
 					fruitsArray = autoDataList.filter(fruit => fruit.toLowerCase().startsWith(e.target.value));
-					console.log('fruitsArray: ', fruitsArray);
 				}
 				showFruitsArray(fruitsArray);
 			})
-
 		};
 		function showFruitsArray(fruitsArray) {
 			const html = !fruitsArray.length ? "No results found" : fruitsArray.join('\n');

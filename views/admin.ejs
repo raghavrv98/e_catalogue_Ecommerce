@@ -75,6 +75,7 @@
 				font-size: 20px;
 				margin: 10px 22px;
 			}
+		
 		}
 
 		@media screen and (max-width: 769px) {
@@ -83,6 +84,7 @@
 				font-size: 20px;
 				margin: 10px 0px;
 			}
+		
 		}
 
 		.down-arrow {
@@ -120,6 +122,7 @@
 </head>
 
 <body>
+
 	<% include header %>
 
 	<!-- breadcrumbs -->
@@ -135,7 +138,7 @@
 	<!--- groceries --->
 	<div style="padding-top:10px;" class="products">
 		<div class="container">
-			<h2 style="margin-bottom : 40px;" class="w3_agile_header"><%= id%></h2>
+			<h2 style="margin-bottom : 40px;" class="w3_agile_header"><%= displayCategoryId%></h2>
 			<% if (message.length > 0) { %>
 			<div class="alert alert-success col-sm-12"><%= message %></div>
 			<% } %>
@@ -143,21 +146,21 @@
 				<div class="categories">
 					<h2>Categories</h2>
 					<ul style="margin-top: 10px;" class="faq">
-						<%  for (const [key, value] of Object.entries(productCategoryObject)) { %>
+						<%  for (let i = 0; i < productCategoryList.length; i++) { %>
 						<li>
-							<div class="main-heading-product" value="<%= key%>"
-								onclick="location.href='/admin-category/<%= key%>'"><%= key%></div>
-							<% if(productCategoryObject[key].length > 1) { %>
+							<div class="main-heading-product" value="<%= productCategoryList[i].name%>"
+								onclick="location.href='/admin-category/<%= productCategoryList[i].name%>'">
+								<%= productCategoryList[i].displayName%></div>
+							<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
 							<a style="display: inline; padding: 0px 10px; float: right;" href="#"><i
 									class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<% } %>
 							<ul>
-								<% if(productCategoryObject[key].length > 1) { %>
-								<% for (let i = 0 ; i < productCategoryObject[key].length ; i++) { %>
+								<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
+								<% for (const [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
 								<li style="font-size: 16px;"><a
-										href="/admin-subCategory/<%= key%>/<%= productCategoryObject[key][i].name%>"><i
-											class="fa fa-arrow-right"
-											aria-hidden="true"></i><%= productCategoryObject[key][i].displayName%></a>
+										href="/admin-subCategory/<%= productCategoryList[i].name%>/<%= value%>"><i
+											class="fa fa-arrow-right" aria-hidden="true"></i><%= key%></a>
 								</li>
 								<% } %>
 								<% } %>
@@ -168,74 +171,120 @@
 				</div>
 			</div>
 			<div class="scrollbar-product" class="col-md-9 products-right">
-				<% if(subCategory !="") { %><h4 style="margin-bottom : 20px;" class="w3_agile_header"><%= subCategory%>
+				<% if(subCategoryId.length != 0) { %><h4 style="margin-bottom : 20px;" class="w3_agile_header">
+					<%= displaySubCategoryId%>
 				</h4> <% } %>
 
 				<div style="overflow-x:auto;">
 					<table>
 						<tr>
 							<th>Image</th>
+							<% if(subCategoryId.length == 0) { %>
+							<th>Sub Category</th>
+							<% } %>
 							<th>Name</th>
 							<th>Actual Price</th>
 							<th>Cutting Price</th>
 							<th>Action</th>
 						</tr>
 						<tr>
-
-							<% if (subCategory == "") { %>
 							<% if (editProduct) { %>
-							<form role="form" method="post" action="/admin-category-add/<%= id %>/<%= editProduct.id%>"
-								enctype="multipart/form-data">
-								<td><input type="file" accept="image/*" value="<%= editProduct.img %>"
-										name="uploaded_image" required></td>
-								<td><input type="text" value="<%= editProduct.name %>" name="name" required></td>
-								<td><input style="width: 75%;" type="number" value="<%= editProduct.actualPrice %>"
-										name="actualPrice" required></td>
-								<td><input style="width: 75%;" type="number" value="<%= editProduct.cuttingPrice %>"
-										name="cuttingPrice" required></td>
-								<td><input type="submit" value="Add/Update"></td>
-							</form>
 
-							<% } else { %>
-							<form role="form" method="post" action="/admin-category-add/<%= id %>"
-								enctype="multipart/form-data">
-								<td><input type="file" name="uploaded_image" required></td>
-								<td><input type="text" name="name" required></td>
-								<td><input style="width: 75%;" type="number" name="actualPrice" required></td>
-								<td><input style="width: 75%;" type="number" name="cuttingPrice" required></td>
-								<td><input type="submit" value="Add/Update"></td>
-							</form>
-							<% } %>
-
-							<% } else { %>
-
-							<% if (editProduct) { %>
+							<% if(subCategoryId.length == 0) { %>
 							<form role="form" method="post"
-								action="/admin-subCategory-add/<%= id %>/<%= subCategory %>/<%= editProduct.id%>"
+								action="/admin-category-add/<%= categoryId %>/<%= editProduct.id%>"
 								enctype="multipart/form-data">
-								<td><input type="file" accept="image/*" value="<%= editProduct.img %>"
-										name="uploaded_image" required></td>
+								<td><input type="file" accept="image/*" value="<%= editProduct.img %>" name="img"
+										required></td>
+
+								<% if(subCategoryId.length == 0) { %>
+								<% if(dropdownList.length > 0) { %>
+								<td><select value="" name="subCategory" required>
+										<option value="">Select</option>
+										<% for (let i = 0; i < dropdownList.length; i++) { %>
+										<option value="<%= dropdownList[i].name%>,<%= dropdownList[i].displayName%>">
+											<%= dropdownList[i].displayName%></option>
+										<% } %>
+									</select></td>
+								<% } else {%>
+								<td><select disabled name="subCategory" required>
+										<option value="">No Category Selected</option>
+									</select></td>
+								<% } %>
+								<% } %>
+
 								<td><input type="text" value="<%= editProduct.name %>" name="name" required></td>
 								<td><input style="width: 75%;" type="number" value="<%= editProduct.actualPrice %>"
 										name="actualPrice" required></td>
 								<td><input style="width: 75%;" type="number" value="<%= editProduct.cuttingPrice %>"
 										name="cuttingPrice" required></td>
-								<td><input type="submit" value="Add/update"></td>
+								<td><input type="submit" value="Add/Update"></td>
 							</form>
 
 							<% } else { %>
-							<form role="form" method="post" action="/admin-subCategory-add/<%= id %>/<%= subCategory %>"
+
+							<form role="form" method="post"
+								action="/admin-subCategory-add/<%= categoryId %>/<%= subCategoryId %>/<%= editProduct.id%>"
 								enctype="multipart/form-data">
-								<td><input type="file" name="uploaded_image" required></td>
+								<td style="display: none;"><input type="text" value="<%= displaySubCategoryId %>" name="displaySubCategoryId" required></td>
+								<td><input type="file" accept="image/*" value="<%= editProduct.img %>" name="img"
+										required></td>
+								<td><input type="text" value="<%= editProduct.name %>" name="name" required></td>
+								<td><input style="width: 75%;" type="number" value="<%= editProduct.actualPrice %>"
+										name="actualPrice" required></td>
+								<td><input style="width: 75%;" type="number" value="<%= editProduct.cuttingPrice %>"
+										name="cuttingPrice" required></td>
+								<td><input type="submit" value="Add/Update"></td>
+							</form>
+							<% } %>
+
+
+							<% } else { %>
+
+							<% if(subCategoryId.length == 0) { %>
+							<form role="form" method="post" action="/admin-category-add/<%= categoryId %>"
+								enctype="multipart/form-data">
+								<td><input type="file" name="img" required></td>
+
+								<% if(subCategoryId.length == 0) { %>
+								<% if(dropdownList.length > 0) { %>
+								<td><select name="subCategory" value="" required>
+										<option value="">Select</option>
+										<% for (let i = 0; i < dropdownList.length; i++) { %>
+										<option value="<%= dropdownList[i].name%>,<%= dropdownList[i].displayName%>">
+											<%= dropdownList[i].displayName%></option>
+										<% } %>
+									</select></td>
+								<% } else {%>
+								<td><select disabled name="subCategory" required>
+										<option value="">No Category Selected</option>
+									</select></td>
+								<% } %>
+								<% } %>
+
 								<td><input type="text" name="name" required></td>
 								<td><input style="width: 75%;" type="number" name="actualPrice" required></td>
 								<td><input style="width: 75%;" type="number" name="cuttingPrice" required></td>
-								<td><input type="submit" value="Add/update"></td>
+								<td><input type="submit" value="Add/Update"></td>
+							</form>
+
+							<% } else { %>
+
+
+							<form role="form" method="post"
+								action="/admin-subCategory-add/<%= categoryId %>/<%= subCategoryId %>"
+								enctype="multipart/form-data">
+								<td><input type="file" name="img" required></td>
+								<td style="display: none;"><input type="text" value="<%= displaySubCategoryId %>"
+										name="displaySubCategoryId" required></td>
+								<td><input type="text" name="name" required></td>
+								<td><input style="width: 75%;" type="number" name="actualPrice" required></td>
+								<td><input style="width: 75%;" type="number" name="cuttingPrice" required></td>
+								<td><input type="submit" value="Add/Update"></td>
 							</form>
 							<% } %>
+
 							<% } %>
-
-
 						</tr>
 					</table>
 				</div>
@@ -245,6 +294,10 @@
 					<table>
 						<tr>
 							<th>Image</th>
+
+							<% if(subCategoryId.length == 0) { %>
+							<th>Sub Category</th>
+							<% } %>
 							<th>Name</th>
 							<th>Actual Price</th>
 							<th>Cutting Price</th>
@@ -254,6 +307,9 @@
 						<tr>
 							<td><img style="height: 40px;" src="http://localhost:3001/uploads/<%= products[i].img%>">
 							</td>
+							<% if(subCategoryId.length == 0) { %>
+							<td><input disabled type="text" value="<%= products[i].displaySubCategory%>"></td>
+							<% } %>
 							<td><input disabled type="text" value="<%= products[i].name%>"></td>
 							<td><input disabled style="width: 75%;" value="<%= products[i].actualPrice%>" type="number">
 							</td>
@@ -262,19 +318,19 @@
 							<form role="form" method="post" action="/admin-edit" enctype="multipart/form-data">
 								<td style="display: none;"><input style="width: 75%;" name="editId"
 										value="<%= products[i].id%>" type="number"></td>
-								<td style="display: none;"><input style="width: 75%;" name="category" value="<%= id%>"
-										type="text"></td>
-								<td style="display: none;"><input style="width: 75%;" name="subCategory"
-										value="<%= subCategory%>" type="text"></td>
+								<td style="display: none;"><input style="width: 75%;" name="categoryId"
+										value="<%= categoryId%>" type="text"></td>
+								<td style="display: none;"><input style="width: 75%;" name="subCategoryId"
+										value="<%= subCategoryId%>" type="text"></td>
 								<td><button type="submit">Edit</button></td>
 							</form>
 							<form role="form" method="post" action="/admin-delete" enctype="multipart/form-data">
 								<td style="display: none;"><input style="width: 75%;" name="deleteId"
 										value="<%= products[i].id%>" type="number"></td>
-								<td style="display: none;"><input style="width: 75%;" name="category" value="<%= id%>"
-										type="text"></td>
-								<td style="display: none;"><input style="width: 75%;" name="subCategory"
-										value="<%= subCategory%>" type="text"></td>
+								<td style="display: none;"><input style="width: 75%;" name="categoryId"
+										value="<%= categoryId%>" type="text"></td>
+								<td style="display: none;"><input style="width: 75%;" name="subCategoryId"
+										value="<%= subCategoryId%>" type="text"></td>
 								<td><button type="submit"
 										onclick="return confirm('Are you sure you want to Delete?')">Delete</button>
 								</td>
@@ -283,34 +339,11 @@
 						<% } %>
 					</table>
 				</div>
-				<!-- <div class="agile_top_brands_grids">
-
-					<% for(var i = 0; i<12; i++){ %>
-					<div style="margin-bottom: 15px;" class="col-md-4 top_brand_left">
-						<div style="border-radius:10px;" class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.html"><img class="product-image" title=" " alt=" "
-														src="images/babyCare.jpg"></a>
-												<p>Channa</p>
-												<h4>₹35.99 <span>₹55.00</span></h4>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-					<% } %>
-					<div class="clearfix"> </div>
-				</div> -->
 			</div>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+
 	<!--- groceries --->
 	<% include footer %>
 

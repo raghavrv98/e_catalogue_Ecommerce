@@ -168,22 +168,22 @@
 							aria-labelledby="expeditions-tab">
 							<div class="agile_top_brands_grids">
 
-								<% for (let i = 0 ; i < productCategoryObject.length ; i++) { %>
+								<% for (let i = 0 ; i < productCategoryList.length ; i++) { %>
 								<div class="col-md-3 top_brand_left">
 									<div class="agile_top_brand_left_grid card-body-category">
 										<div class="agile_top_brand_left_grid1">
 											<figure>
 												<div class="snipcart-item block">
 													<div class="snipcart-thumb">
-														<a href="/user/<%= productCategoryObject[i].name%>"><img
+														<a href="/user/<%= productCategoryList[i].name%>"><img
 																class="category-img" title=" " alt=" "
-																src="http://localhost:3001/images/<%= productCategoryObject[i].name%>.png" /></a>
+																src="http://localhost:3001/images/<%= productCategoryList[i].name%>.png" /></a>
 													</div>
 												</div>
 											</figure>
 										</div>
 									</div>
-									<p class="category-heading"><%= productCategoryObject[i].displayName%></p>
+									<p class="category-heading"><%= productCategoryList[i].displayName%></p>
 								</div>
 
 								<% } %>

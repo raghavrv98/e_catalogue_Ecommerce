@@ -1,0 +1,74 @@
+
+login cred 
+
+id 	 name     emailid       password timestamp
+1. 	admin admin@gmail.com   1234		now()
+--------------------------------
+
+DROP TABLE IF EXISTS login_cred;
+create table login_cred(
+   id INT NOT NULL AUTO_INCREMENT,
+   name VARCHAR(255) NOT NULL,
+   email VARCHAR(255) NOT NULL,
+   password VARCHAR(255) NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+INSERT INTO login_cred (name,email,password)
+VALUES ('admin','admin@gmail.com','1234');
+
+---------------------------------------------------------------
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+--------------------------------------------------------------------
+productCategories
+
+id Category	displayCategory subCategory displaySubCategory timestamp
+1. grocery    Grocery		dal					Dal			now()
+
+===================================================================
+
+DROP TABLE IF EXISTS product_categories;
+create table product_categories(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   displayCategory VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('health_wellness','Health & Wellness','lotion', 'Lotion');
+
+---------------------------------------------------------------------
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+--------------------------------------------------------------------
+
+Category table
+Grocery
+
+id subCategory 	  name	     imgname    actualPrice cuttingPrice timestamp 
+1.	dal			 massor		massor.png		20			43			now()
+
+DROP TABLE IF EXISTS health_wellness;
+create table health_wellness(
+   id INT NOT NULL AUTO_INCREMENT,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+INSERT INTO health_wellness (subCategory, displaySubCategory, name, img, actualPrice, cuttingPrice) VALUES ('lotion', 'Lotion', 'baby Lotion', 'baby.png', '20', '35');
+
+
+

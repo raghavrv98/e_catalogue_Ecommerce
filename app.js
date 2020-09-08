@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
 	password : 'root',
-	database : 'ecommerce'
+	database : 'ecommerce_prod'
 });
  
 connection.connect();

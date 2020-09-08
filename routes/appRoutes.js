@@ -6,26 +6,21 @@ var homeCtrl=require('../controllers/homeCtrl')
 
 router.get('/', homeCtrl.showHome);
 
-
-router.get('/user/:category/:subCategory', homeCtrl.showSubCategoryProductsUser);
-router.get('/user/:category', homeCtrl.showCategoryProductsUser);
-
 router.get('/login', homeCtrl.showLogin);
-router.post('/login', homeCtrl.postLogin);
-
 router.get('/aboutUs', homeCtrl.showAboutUs);
-
 router.get('/contact', homeCtrl.showContact);
 router.post('/contact', homeCtrl.enquiryMail);
-
-router.get('/admin-category/:category/:editId?', homeCtrl.showCategoryProducts);
-router.post('/admin-category-add/:category?/:editId?', homeCtrl.addCategoryProduct);
-
-router.get('/admin-subCategory/:category/:subCategory/:editId?', homeCtrl.showSubCategoryProducts);
-router.post('/admin-subCategory-add/:category?/:subCategory?/:editId?', homeCtrl.addSubCategoryProduct);
-
+router.get('/user/:categoryId/:subCategoryId?', homeCtrl.showCategoryProductsUser);
+router.post('/login', homeCtrl.postLogin);
 router.post('/admin-delete', homeCtrl.deleteProduct);
 router.post('/admin-edit', homeCtrl.showEditProduct);
+router.get('/admin-category/:categoryId/:editId?', homeCtrl.showCategoryProducts);
+router.get('/admin-subCategory/:categoryId/:subCategoryId/:editId?', homeCtrl.showSubCategoryProducts);
+
+
+router.post('/admin-category-add/:categoryId/:editId?', homeCtrl.addCategoryProduct);
+router.post('/admin-subCategory-add/:categoryId/:subCategoryId/:editId?', homeCtrl.addSubCategoryProduct);
+
 
 
 

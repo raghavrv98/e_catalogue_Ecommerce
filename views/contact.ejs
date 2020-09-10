@@ -62,9 +62,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-md-6 w3_agileits_contact_grid_right">
 				<% if (successMessage.length > 0) { %>
-					<div class="alert alert-success col-sm-12"><%= successMessage %></div>
-					<% } %>
-	
+				<div class="alert alert-success col-sm-12"><%= successMessage %></div>
+				<% } %>
+
 				<h2 class="w3_agile_header">Leave a<span> Message</span></h2>
 
 				<form action="/contact-enquiry" method="post">
@@ -75,7 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input style="border-radius:10px" class="input__field" type="email" name="emailId"
 						placeholder="Your Email" required />
 					<input type="tel" name="phone" pattern="[1-9]{1}[0-9]{9}" title="Enter 10 digit mobile number"
-					style="border-radius:10px" class="input__field" placeholder="Phone Number" required>
+						style="border-radius:10px" class="input__field" placeholder="Phone Number" required>
 					<!-- <span class="input input--ichiro">
 					</span> -->
 					<textarea style="border-radius:10px" name="message" placeholder="Your message here..."
@@ -96,31 +96,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-			*/
-
 			$().UItoTop({ easingType: 'easeOutQuart' });
-
 		});
 	</script>
 	<!-- //here ends scrolling icon -->
 	<script src="http://localhost:3001/js/minicart.min.js"></script>
-	<script>
-		// Mini Cart
-		paypal.minicart.render({
-			action: '#'
-		});
 
-		if (~window.location.search.indexOf('reset=true')) {
-			paypal.minicart.reset();
-		}
-	</script>
 	<!-- main slider-banner -->
 	<script src="http://localhost:3001/js/skdslider.min.js"></script>
 	<link href="http://localhost:3001/css/skdslider.css" rel="stylesheet">

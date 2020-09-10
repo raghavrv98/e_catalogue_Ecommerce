@@ -3,9 +3,7 @@ var mailUtils = require('./../utils/mail-utils')
 
 var message = '';
 module.exports = {
-
     
-
     showSearchProduct: (req, res, next) => {
         message = ""
         var search = req.body.search
@@ -18,13 +16,24 @@ module.exports = {
             }
             else {
                 let searchObject = autosearchData.find(val => val.name == search)
-                if(searchObject.subCategory==""){
-                    res.redirect(`/user/${searchObject.category}`);
+                if(searchObject){
+                    if (searchObject.subCategory == "") {
+                        res.redirect(`/user/${searchObject.category}`);
+                    }
+                    else {
+                        res.redirect(`/user/${searchObject.category}/${searchObject.subCategory}`);
+                    }
                 }
                 else{
-                    res.redirect(`/user/${searchObject.category}/${searchObject.subCategory}`);
+                    res.redirect('/notFound')
                 }
             }
+        })
+    },
+
+    logout: (req, res, next) => {
+        req.session.destroy(function (err) {
+            res.redirect("/login");
         })
     },
 
@@ -213,6 +222,7 @@ module.exports = {
             }
             else {
                 if (rows[0].email === email && rows[0].password === password) {
+                    req.session.userId = rows[0].id;
                     res.redirect('admin-category/grocery');
                 }
                 else {
@@ -227,7 +237,7 @@ module.exports = {
     },
 
     showContact: (req, res, next) => {
-        var successMessage= ""
+        var successMessage = ""
         var autosearchList = []
         var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
         var query = db.query(sql, function (err, autosearchData) {
@@ -239,6 +249,25 @@ module.exports = {
 
                 res.render('contact', {
                     successMessage,
+                    autosearchList
+                });
+            }
+        })
+    },
+
+    notFound: (req, res, next) => {
+        message =""
+        var autosearchList = []
+        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+        var query = db.query(sql, function (err, autosearchData) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                autosearchData.map(val => autosearchList.push(val.name))
+
+                res.render('notFound', {
+                    message,
                     autosearchList
                 });
             }
@@ -449,6 +478,10 @@ module.exports = {
                                 return val
                             }
                         })
+
+                        var session = req.session.userId;
+                        console.log('session: ', session);
+                    
                         res.render('admin', {
                             message,
                             productCategoryList,
@@ -459,7 +492,8 @@ module.exports = {
                             displayCategoryId,
                             displaySubCategoryId,
                             dropdownList,
-                            autosearchList
+                            autosearchList,
+                            session
                         });
                     }
                 })
@@ -545,6 +579,9 @@ module.exports = {
                                 return val
                             }
                         })
+                        var session = req.session.userId;
+                        console.log('session: in show ', session);
+
                         res.render('admin', {
                             message,
                             productCategoryList,
@@ -554,7 +591,8 @@ module.exports = {
                             subCategoryId,
                             displayCategoryId,
                             displaySubCategoryId,
-                            autosearchList
+                            autosearchList,
+                            session
                         });
                     }
                 })

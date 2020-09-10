@@ -9,6 +9,9 @@ router.get('/', homeCtrl.showHome);
 router.get('/login', homeCtrl.showLogin);
 router.post('/login', homeCtrl.postLogin);
 
+router.get('/logout', homeCtrl.logout);
+
+
 router.get('/aboutUs', homeCtrl.showAboutUs);
 
 router.get('/contact', homeCtrl.showContact);
@@ -27,6 +30,7 @@ router.post('/admin-subCategory-add/:categoryId/:subCategoryId/:editId?', homeCt
 router.post('/admin-delete', homeCtrl.deleteProduct);
 router.post('/admin-edit', homeCtrl.showEditProduct);
 
+router.get('/notFound', homeCtrl.notFound);
 
 
 

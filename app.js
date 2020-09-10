@@ -8,6 +8,7 @@ var	bodyParser=require("body-parser");
 var appRouter = require('./routes/appRoutes');
 var app = express();
 var mysql = require('mysql')
+var session = require('express-session');
 
 var connection = mysql.createConnection({
 	host     : 'localhost',
@@ -23,6 +24,12 @@ global.db = connection;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(session({
+  secret: 'ecommerce',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 10800000 }
+}))
 
 
 // app.use(logger('dev'));

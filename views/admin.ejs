@@ -124,6 +124,8 @@
 <body>
 
 	<% include header %>
+	
+	<% if (session) { %>
 
 	<!-- breadcrumbs -->
 	<div class="breadcrumbs">
@@ -131,6 +133,7 @@
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="/"><span class="fa fa-home" aria-hidden="true"></span>Home</a></li>
 				<li class="active">Products</li>
+				<a style="float: right;" href="/logout"><span style="margin-right: 5px;" class="fa fa-power-off" aria-hidden="true"></span>Logout</a>
 			</ol>
 		</div>
 	</div>
@@ -142,6 +145,8 @@
 			<% if (message.length > 0) { %>
 			<div class="alert alert-success col-sm-12"><%= message %></div>
 			<% } %>
+			
+				
 			<div class="col-md-3 products-left">
 				<div class="categories">
 					<h2>Categories</h2>
@@ -343,6 +348,13 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+
+	<% } else { %>
+		<!-- <img src="" alt="not found"> -->
+		<div style="text-align: center;">
+			<img style="width: 65%; height: auto;" class="category-img" alt="not found" src="http://localhost:3001/images/403.jpg" />
+		</div>
+		<% } %>
 
 	<!--- groceries --->
 	<% include footer %>

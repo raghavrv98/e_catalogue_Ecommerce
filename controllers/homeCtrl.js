@@ -3,20 +3,29 @@ var mailUtils = require('./../utils/mail-utils')
 
 var message = '';
 module.exports = {
-    
-    showSearchProduct: (req, res, next) => {
-        message = ""
-        var search = req.body.search
 
-        // var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+    showSearchProduct: (req, res, next) => {
+
+        message = ""
+
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
+
+        var search = req.body.search
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
             }
             else {
                 let searchObject = autosearchData.find(val => val.name == search)
-                if(searchObject){
+                if (searchObject) {
                     if (searchObject.subCategory == "") {
                         res.redirect(`/user/${searchObject.category}`);
                     }
@@ -24,7 +33,7 @@ module.exports = {
                         res.redirect(`/user/${searchObject.category}/${searchObject.subCategory}`);
                     }
                 }
-                else{
+                else {
                     res.redirect('/notFound')
                 }
             }
@@ -41,28 +50,17 @@ module.exports = {
 
         message = ""
 
-
-        // var sqlQuery = []
-        // var sql = ""
-
-        // let category = []
-        //         for (var i in product_categories) {
-        //             category.push(product_categories[i].category)
-        //             category = [...new Set(category)]
-        //         }
-
-        //         for (let i = 0; i < category.length - 1; i++) {
-        //                 sqlQuery.push(`select * from ${category[i]} Union`)
-        //             }
-        //             sqlQuery.push(`select * from ${category[category.length - 1]}`)
-
-        //             sqlQuery = sqlQuery.join(' ')
-
-        //              sql = sqlQuery;
-        //              console.log('sql: ', sql);
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
 
         var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
@@ -112,7 +110,15 @@ module.exports = {
     showCategoryProductsUser: (req, res, next) => {
 
         var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
@@ -202,7 +208,15 @@ module.exports = {
 
     postLogin: (req, res, next) => {
         var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
@@ -239,7 +253,15 @@ module.exports = {
     showContact: (req, res, next) => {
         var successMessage = ""
         var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
@@ -256,9 +278,17 @@ module.exports = {
     },
 
     notFound: (req, res, next) => {
-        message =""
+        message = ""
         var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
@@ -277,7 +307,15 @@ module.exports = {
     showAboutUs: (req, res, next) => {
         message = ""
         var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
@@ -296,7 +334,15 @@ module.exports = {
     showLogin: (req, res, next) => {
         var message = ""
         var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
@@ -406,7 +452,15 @@ module.exports = {
         message = ""
 
         var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
@@ -480,8 +534,7 @@ module.exports = {
                         })
 
                         var session = req.session.userId;
-                        console.log('session: ', session);
-                    
+
                         res.render('admin', {
                             message,
                             productCategoryList,
@@ -511,7 +564,15 @@ module.exports = {
         message = ""
 
         var autosearchList = []
-        var sql = 'SELECT * FROM grocery UNION SELECT * FROM health_wellness';
+        var sqlQuery = []
+        var sql = ""
+        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (let i = 0; i < category.length - 1; i++) {
+            sqlQuery.push(`select * from ${category[i]} Union`)
+        }
+        sqlQuery.push(`select * from ${category[category.length - 1]}`)
+        sqlQuery = sqlQuery.join(' ')
+        sql = sqlQuery;
         var query = db.query(sql, function (err, autosearchData) {
             if (err) {
                 return res.status(500).send(err);
@@ -580,7 +641,6 @@ module.exports = {
                             }
                         })
                         var session = req.session.userId;
-                        console.log('session: in show ', session);
 
                         res.render('admin', {
                             message,

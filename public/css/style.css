@@ -345,7 +345,7 @@ ul.multi-column-dropdown h6 {
     left: 43%;
 }
 .agile_top_brand_left_grid{
-	padding: .5em;
+	padding: 20px 0px 5px;
 	position:relative;
 }
 .agile_top_brand_left_grid_pos{
@@ -362,10 +362,10 @@ ul.multi-column-dropdown h6 {
 }
 .agile_top_brand_left_grid1 p{
 	color:#212121;
-	margin:1.5em 0 1em;
+	margin:10px 0px;
 	line-height:1.5em;
 	text-transform:capitalize;
-	font-size:14px;
+	font-size:16px;
 	text-align: center;
 }
 .agile_top_brand_left_grid1 h4,.agileinfo_single_right_snipcart h4{
@@ -559,7 +559,7 @@ p.w3l-ad {
     line-height: 28px;
 }
 .agile_top_brands_grids {
-    margin-top: 40px;
+    margin-top: 15px;
 }
 .hover14.column {
     border: 1px solid #c0bebe;

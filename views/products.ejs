@@ -123,7 +123,7 @@
 				<div class="categories">
 					<h2>Categories</h2>
 					<ul style="margin-top: 10px;" class="faq">
-						<%  for (let i = 0; i < productCategoryList.length; i++) { %>
+						<%  for (var i = 0; i < productCategoryList.length; i++) { %>
 						<li>
 							<div class="main-heading-product" value="<%= productCategoryList[i].name%>" onclick="location.href='/user/<%= productCategoryList[i].name%>'"><%= productCategoryList[i].displayName%></div>
 							<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
@@ -132,7 +132,7 @@
 							<% } %>
 							<ul>
 								<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
-								<% for (const [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
+								<% for (var [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
 								<li style="font-size: 16px;"><a
 										href="/user/<%= productCategoryList[i].name%>/<%= value%>"><i
 											class="fa fa-arrow-right"

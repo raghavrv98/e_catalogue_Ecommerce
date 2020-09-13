@@ -10,8 +10,8 @@ module.exports = {
 
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -24,7 +24,7 @@ module.exports = {
                 return res.status(500).send(err);
             }
             else {
-                let searchObject = autosearchData.find(val => val.name == search)
+                var searchObject = autosearchData.find(val => val.name == search)
                 if (searchObject) {
                     if (searchObject.subCategory == "") {
                         res.redirect(`/user/${searchObject.category}`);
@@ -52,8 +52,8 @@ module.exports = {
 
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -79,19 +79,19 @@ module.exports = {
             }
             else {
 
-                let displayCategory = []
+                var displayCategory = []
                 for (var i in product_categories) {
                     displayCategory.push(product_categories[i].displayCategory)
                     displayCategory = [...new Set(displayCategory)]
                 }
 
-                let category = []
+                var category = []
                 for (var i in product_categories) {
                     category.push(product_categories[i].category)
                     category = [...new Set(category)]
                 }
 
-                for (let i = 0; i < displayCategory.length; i++) {
+                for (var i = 0; i < displayCategory.length; i++) {
                     productCategoryList.push({
                         displayName: displayCategory[i],
                         name: category[i]
@@ -112,8 +112,8 @@ module.exports = {
         var autosearchList = []
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -141,21 +141,21 @@ module.exports = {
             }
             else {
 
-                let displayCategory = []
+                var displayCategory = []
                 for (var i in product_categories) {
                     displayCategory.push(product_categories[i].displayCategory)
                     displayCategory = [...new Set(displayCategory)]
                 }
 
-                let category = []
+                var category = []
                 for (var i in product_categories) {
                     category.push(product_categories[i].category)
                     category = [...new Set(category)]
                 }
 
-                for (let i = 0; i < displayCategory.length; i++) {
-                    let catArr = product_categories.filter(val => val.category == category[i])
-                    let subCategory = {}
+                for (var i = 0; i < displayCategory.length; i++) {
+                    var catArr = product_categories.filter(val => val.category == category[i])
+                    var subCategory = {}
 
                     catArr.map(val => {
                         if (val.displaySubCategory.length > 0) {
@@ -210,8 +210,8 @@ module.exports = {
         var autosearchList = []
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -255,8 +255,8 @@ module.exports = {
         var autosearchList = []
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -282,8 +282,8 @@ module.exports = {
         var autosearchList = []
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -309,8 +309,8 @@ module.exports = {
         var autosearchList = []
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -336,8 +336,8 @@ module.exports = {
         var autosearchList = []
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -454,8 +454,8 @@ module.exports = {
         var autosearchList = []
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -479,21 +479,21 @@ module.exports = {
             }
             else {
 
-                let displayCategory = []
+                var displayCategory = []
                 for (var i in product_categories) {
                     displayCategory.push(product_categories[i].displayCategory)
                     displayCategory = [...new Set(displayCategory)]
                 }
 
-                let category = []
+                var category = []
                 for (var i in product_categories) {
                     category.push(product_categories[i].category)
                     category = [...new Set(category)]
                 }
 
-                for (let i = 0; i < displayCategory.length; i++) {
-                    let catArr = product_categories.filter(val => val.category == category[i])
-                    let subCategory = {}
+                for (var i = 0; i < displayCategory.length; i++) {
+                    var catArr = product_categories.filter(val => val.category == category[i])
+                    var subCategory = {}
 
                     catArr.map(val => {
                         if (val.displaySubCategory.length > 0) {
@@ -508,11 +508,11 @@ module.exports = {
                     })
                 }
 
-                let dropdownlistObject = productCategoryList.find(val => val.name == categoryId)
-                let requiredPair = Object.entries(dropdownlistObject.subCategory)
-                let dropdownList = []
+                var dropdownlistObject = productCategoryList.find(val => val.name == categoryId)
+                var requiredPair = Object.entries(dropdownlistObject.subCategory)
+                var dropdownList = []
 
-                for (let i = 0; i < requiredPair.length; i++) {
+                for (var i = 0; i < requiredPair.length; i++) {
                     dropdownList.push({
                         displayName: requiredPair[i][0],
                         name: requiredPair[i][1]
@@ -527,7 +527,7 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        let editProduct = categoryList.find(val => {
+                        var editProduct = categoryList.find(val => {
                             if (val.id == editId) {
                                 return val
                             }
@@ -566,8 +566,8 @@ module.exports = {
         var autosearchList = []
         var sqlQuery = []
         var sql = ""
-        let category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
-        for (let i = 0; i < category.length - 1; i++) {
+        var category = ['new_arrivals','breakfast_dairy','oral_care','grocery','beverages','personal_care','beauty_cosmetics','cleaning_household','branded_foods','baby_care','pooja_needs','mask_sanitizer','health_wellness','bakery_cakes','birthday_items','disposable_items','stationary','upvaas_fast_special','sunglasses_watches']
+        for (var i = 0; i < category.length - 1; i++) {
             sqlQuery.push(`select * from ${category[i]} Union`)
         }
         sqlQuery.push(`select * from ${category[category.length - 1]}`)
@@ -591,21 +591,21 @@ module.exports = {
             }
             else {
 
-                let displayCategory = []
+                var displayCategory = []
                 for (var i in product_categories) {
                     displayCategory.push(product_categories[i].displayCategory)
                     displayCategory = [...new Set(displayCategory)]
                 }
 
-                let category = []
+                var category = []
                 for (var i in product_categories) {
                     category.push(product_categories[i].category)
                     category = [...new Set(category)]
                 }
 
-                for (let i = 0; i < displayCategory.length; i++) {
-                    let catArr = product_categories.filter(val => val.category == category[i])
-                    let subCategory = {}
+                for (var i = 0; i < displayCategory.length; i++) {
+                    var catArr = product_categories.filter(val => val.category == category[i])
+                    var subCategory = {}
 
                     catArr.map(val => {
                         if (val.displaySubCategory.length > 0) {
@@ -621,8 +621,8 @@ module.exports = {
                 }
                 displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
 
-                let categoryObject = productCategoryList.find(val => val.name == categoryId)
-                let requiredPair = Object.entries(categoryObject.subCategory).find(key => {
+                var categoryObject = productCategoryList.find(val => val.name == categoryId)
+                var requiredPair = Object.entries(categoryObject.subCategory).find(key => {
                     if (key[1] == subCategoryId) {
                         return key
                     }
@@ -635,7 +635,7 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        let editProduct = categoryList.find(val => {
+                        var editProduct = categoryList.find(val => {
                             if (val.id == editId) {
                                 return val
                             }

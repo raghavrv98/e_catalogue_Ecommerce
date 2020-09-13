@@ -152,7 +152,7 @@
 				<div class="categories">
 					<h2>Categories</h2>
 					<ul style="margin-top: 10px;" class="faq">
-						<%  for (let i = 0; i < productCategoryList.length; i++) { %>
+						<%  for (var i = 0; i < productCategoryList.length; i++) { %>
 						<li>
 							<div class="main-heading-product" value="<%= productCategoryList[i].name%>"
 								onclick="location.href='/admin-category/<%= productCategoryList[i].name%>'">
@@ -163,7 +163,7 @@
 							<% } %>
 							<ul>
 								<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
-								<% for (const [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
+								<% for (var [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
 								<li style="font-size: 16px;"><a
 										href="/admin-subCategory/<%= productCategoryList[i].name%>/<%= value%>"><i
 											class="fa fa-arrow-right" aria-hidden="true"></i><%= key%></a>
@@ -208,7 +208,7 @@
 								<% if(dropdownList.length > 0) { %>
 								<td><select value="" name="subCategory" required>
 										<option value="">Select</option>
-										<% for (let i = 0; i < dropdownList.length; i++) { %>
+										<% for (var i = 0; i < dropdownList.length; i++) { %>
 										<option value="<%= dropdownList[i].name%>,<%= dropdownList[i].displayName%>">
 											<%= dropdownList[i].displayName%></option>
 										<% } %>
@@ -258,7 +258,7 @@
 								<% if(dropdownList.length > 0) { %>
 								<td><select name="subCategory" value="" required>
 										<option value="">Select</option>
-										<% for (let i = 0; i < dropdownList.length; i++) { %>
+										<% for (var i = 0; i < dropdownList.length; i++) { %>
 										<option value="<%= dropdownList[i].name%>,<%= dropdownList[i].displayName%>">
 											<%= dropdownList[i].displayName%></option>
 										<% } %>

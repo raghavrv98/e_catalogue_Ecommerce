@@ -667,7 +667,7 @@ module.exports = {
 
         var name = req.body.name
         var actualPrice = req.body.actualPrice
-        var cuttingPrice = req.body.cuttingPrice
+        var cuttingPrice = req.body.cuttingPrice.length > 0 ? req.body.cuttingPrice : 0 
         var subCategory = req.body.subCategory ? req.body.subCategory.split(',')[0] : ""
         var displaySubCategory = req.body.subCategory ? req.body.subCategory.split(',')[1] : ""
 
@@ -713,7 +713,7 @@ module.exports = {
 
         var name = req.body.name
         var actualPrice = req.body.actualPrice
-        var cuttingPrice = req.body.cuttingPrice
+        var cuttingPrice = req.body.cuttingPrice.length > 0 ? req.body.cuttingPrice : 0
 
         if (!req.files)
             return res.status(400).send('No files were uploaded.');

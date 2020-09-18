@@ -72,6 +72,7 @@
 	.contact-icon-position {
 		font-size: 20px;
 		margin-right: 6px;
+		color: black;
 	}
 
 
@@ -128,7 +129,7 @@
 		border-radius: 5px;
 		height: 37px;
 		margin-right: 5px;
-		width: 88%;
+		width: 87%;
 		border: 1px solid black;
 		padding-left: 15px;
 		padding-right: 15px;
@@ -182,10 +183,9 @@
 	<div class="container">
 		<div class="w3ls_logo_products_left1 icon-position-contact">
 			<ul style="margin-top: -33px;" class="phone_email">
-				<li><span class="contact-icon-position"><i style="transform: rotate(116deg);"
-							class="fas fa-phone"></i></span>For order call us : +91 9045055444, 9219869825</li>
-				<li style="margin-left: 9px;"><span class="contact-icon-position"><i
-							class="fab fa-whatsapp"></i></span>Or whatsapp us: +91 9045055444, 9219869825</li>
+				<li>For Order Call or Whatsapp us at :</li><br>
+				<!-- <li style="margin-left: -26px;"><a href="tel:9045056444"><span class="contact-icon-position"><i style="transform: rotate(116deg);" class="fas fa-phone"></i></span></a><span class="contact-icon-position"><i class="fab fa-whatsapp"></i></span>+91 9045056444, 9219869825</li> -->
+				<li style="margin-left: -26px;"><a href="tel:9045056444"><span class="contact-icon-position"><i style="transform: rotate(116deg);" class="fas fa-phone"></i></span></a><a href="https://api.whatsapp.com/send?phone=918630422423"><span class="contact-icon-position"><i class="fab fa-whatsapp"></i></span></a>+91 9045056444, 9219869825</li>
 			</ul>
 		</div>
 		<div style="margin-bottom:10px;" class="w3ls_logo_products_left">
@@ -213,12 +213,13 @@
 			
 			<form method="post" action="/searchProduct/categoryId">
 				<div class="autocomplete">
-				  <input class="search-box" id="myInput" type="text" autocomplete="off" name="search" placeholder="Search for a Product...">
+				  <input class="search-box" id="myInput" type="text" autocomplete="off" name="search" placeholder="Search for a Product... " required>
 				  <button type="submit" class="btn btn-default search" aria-label="Left Align">
 					  <i class="fa fa-search" aria-hidden="true"> </i>
 				  </button>
 				</div>
 			  </form>
+			  
 				<div class="clearfix"></div>
 		</div>
 	</div>
@@ -383,5 +384,17 @@
 	var count = "<%= autosearchList %>"
 	var productListArray = count.split(',')
 	autocomplete(document.getElementById("myInput"), productListArray);
+
+	$(document).ready(function() {
+
+$('.search-box').keydown(function(event) {
+  // enter has keyCode = 13, change it if you want to use another button
+  if (event.keyCode == 13) {
+	this.form.submit();
+	return false;
+  }
+});
+
+});
 	</script>
 	

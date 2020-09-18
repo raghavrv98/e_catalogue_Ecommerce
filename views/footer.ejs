@@ -1,7 +1,13 @@
 <style>
 	@media screen and (min-width: 768px) {
-		.category-position {
-			text-align: right;
+		
+		.margin-top{
+			margin-top: 21%;
+		}
+
+		.heading-SubCategory{
+			position: absolute;
+    		transform: translate(55%, -50%);
 		}
 
 		.ul-category {
@@ -27,6 +33,10 @@
 		}
 	}
 
+	.category-position {
+			text-transform: none !important;;
+		}
+
 	#icon-circle-social {
 		border-radius: 50%;
 		border: none;
@@ -45,14 +55,15 @@
 	<div class="container">
 		<div class="w3_footer_grids">
 			<div class="col-md-3 w3_footer_grid">
-				<h3>Contact</h3>
+				<h3 class="category-position">Contact</h3>
 
 				<ul style="margin-bottom: 55px;" class="address">
 					<li><i class="fa fa-home"></i>Pramod Kumar Agrawal<br> <span>Shri Ram Provision Store, Lalaram</span> <span>marg, near Gurudwara,
 							Ghantaghar</span>
 						<span>Kosi kalan, Mathura-281403</span></li>
-					<li><i style="transform: rotate(90deg);" class="fas fa-phone"></i>+91 9045055444, 9219869825, <span>9997610265</span></li>
-					<li><i class="fab fa-whatsapp"></i>+91 9045055444, 9219869825, <span>9997610265</span></li>
+					<li><a href="tel:9045056444"><i style="transform: rotate(90deg);" class="fas fa-phone"></i></a>+91 9045056444, 9219869825, <span>9997610265</span></li>
+					<li><i class="fab fa-whatsapp"></i>+91 9045056444, 9219869825<span>9997610265</span></li>
+					<!-- <li><a href="https://api.whatsapp.com/send?phone=919045056444"><i class="fab fa-whatsapp"></i></a>+91 9045056444, 9219869825<span>9997610265</span></li> -->
 					<li><i class="far fa-envelope"></i><a href="mailto:atozonlinemart5@gmail.com">atozonlinemart5@gmail.com</a></li>
 				</ul>
 			</div>
@@ -74,7 +85,7 @@
 				</a>
 			</div>
 			<div class="col-md-3 w3_footer_grid">
-				<h3>Information</h3>
+				<h3 class="category-position">Information</h3>
 				<ul class="info">
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/">Home</a></li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/aboutUs">About Us</a></li>
@@ -83,8 +94,8 @@
 				</ul>
 			</div>
 			<div class="col-md-3 w3_footer_grid">
-				<h3 class="category-position">Category</h3>
-				<ul class="info">
+				<h3 class="category-position heading-SubCategory">Special Categories</h3>
+				<ul class="info margin-top">
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/user/grocery/cookingoil_ghee">Cooking
 							Oils</a></li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/user/grocery/dry_fruits">Dry Fruits</a>

@@ -125,9 +125,11 @@
 					<ul style="margin-top: 10px;" class="faq">
 						<%  for (var i = 0; i < productCategoryList.length; i++) { %>
 						<li>
-							<div class="main-heading-product" value="<%= productCategoryList[i].name%>" onclick="location.href='/user/<%= productCategoryList[i].name%>'"><%= productCategoryList[i].displayName%></div>
+							<div class="main-heading-product" value="<%= productCategoryList[i].name%>"
+								onclick="location.href='/user/<%= productCategoryList[i].name%>'">
+								<%= productCategoryList[i].displayName%></div>
 							<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
-							<a style="display: inline; padding: 0px 10px; float: right;" href="#"><i
+							<a style="padding: 0px 10px; float: right;" href="#"><i
 									class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<% } %>
 							<ul>
@@ -135,8 +137,7 @@
 								<% for (var [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
 								<li style="font-size: 16px;"><a
 										href="/user/<%= productCategoryList[i].name%>/<%= value%>"><i
-											class="fa fa-arrow-right"
-											aria-hidden="true"></i><%= key%></a>
+											class="fa fa-arrow-right" aria-hidden="true"></i><%= key%></a>
 								</li>
 								<% } %>
 								<% } %>
@@ -159,9 +160,12 @@
 											<div class="snipcart-thumb">
 												<img class="product-image" title=" " alt=" "
 													src="http://www.atozonlinemart.com/uploads/<%= products[i].img%>">
-												<p><%= products[i].name %></p>
+												<p style="padding: 0px 20px;"><%= products[i].name %></p>
 												<h4>₹<%= products[i].actualPrice %>
-													<span>₹<%= products[i].cuttingPrice %></span></h4>
+													<% if(products[i].cuttingPrice != 0) { %>
+													<span>₹<%= products[i].cuttingPrice %></span>
+													<% } %>
+												</h4>
 											</div>
 										</div>
 									</figure>

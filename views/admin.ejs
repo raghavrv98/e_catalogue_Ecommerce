@@ -41,6 +41,9 @@
 	</script>
 	<!-- start-smoth-scrolling -->
 	<style>
+		.fileWidth{
+			width: 170px;
+		}
 		table {
 			border-collapse: collapse;
 			border-spacing: 0;
@@ -60,7 +63,7 @@
 
 		.scrollbar-product {
 			overflow: auto;
-			height: 128vh;
+			height: 91vh;
 			border-radius: 10px;
 		}
 
@@ -97,7 +100,7 @@
 		.main-heading-product {
 			display: inline !important;
 			color: gray;
-			font-size: 23px;
+			font-size: 19px;
 			cursor: pointer;
 		}
 
@@ -143,6 +146,7 @@
 	<div style="padding-top:10px;" class="products">
 		<div class="container">
 			<h2 style="margin-bottom : 40px;" class="w3_agile_header"><%= displayCategoryId%></h2>
+			
 			<% if (message.length > 0) { %>
 			<div class="alert alert-success col-sm-12"><%= message %></div>
 			<% } %>
@@ -164,7 +168,7 @@
 							<ul>
 								<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
 								<% for (var [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
-								<li style="font-size: 16px;"><a
+								<li style="font-size: 14px;"><a
 										href="/admin-subCategory/<%= productCategoryList[i].name%>/<%= value%>"><i
 											class="fa fa-arrow-right" aria-hidden="true"></i><%= key%></a>
 								</li>
@@ -176,11 +180,20 @@
 					</ul>
 				</div>
 			</div>
-			<div class="scrollbar-product" class="col-md-9 products-right">
+			<div class="col-md-9 products-right">
 				<% if(subCategoryId.length != 0) { %><h4 style="margin-bottom : 20px; margin-left: 5px;"
 					class="w3_agile_header">
 					<%= displaySubCategoryId%>
-				</h4> <% } %>
+				</h4> <% } else {%>
+					<form role="form" method="post"
+					action="/addSubCategory/<%= categoryId %>"
+					enctype="multipart/form-data">
+				<span>Sub Category : </sapn>
+					<input type="text" name="addSubCategory" required>
+				<input type="submit" value="Add">
+				</form>
+				<br><br>
+					<% } %>
 
 				<div style="overflow-x:auto;">
 					<table>
@@ -201,7 +214,7 @@
 							<form role="form" method="post"
 								action="/admin-category-add/<%= categoryId %>/<%= editProduct.id%>"
 								enctype="multipart/form-data">
-								<td><input type="file" accept="image/*" value="<%= editProduct.img %>" name="img"
+								<td><input type="file" class="fileWidth" accept="image/*" value="<%= editProduct.img %>" name="img"
 										required></td>
 
 								<% if(subCategoryId.length == 0) { %>
@@ -235,7 +248,7 @@
 								enctype="multipart/form-data">
 								<td style="display: none;"><input type="text" value="<%= displaySubCategoryId %>"
 										name="displaySubCategoryId" required></td>
-								<td><input type="file" accept="image/*" value="<%= editProduct.img %>" name="img"
+								<td><input type="file" class="fileWidth" accept="image/*" value="<%= editProduct.img %>" name="img"
 										required></td>
 								<td><input type="text" value="<%= editProduct.name %>" name="name" required></td>
 								<td><input style="width: 75%;" type="number" value="<%= editProduct.actualPrice %>"
@@ -252,7 +265,7 @@
 							<% if(subCategoryId.length == 0) { %>
 							<form role="form" method="post" action="/admin-category-add/<%= categoryId %>"
 								enctype="multipart/form-data">
-								<td><input type="file" name="img" required></td>
+								<td><input type="file" class="fileWidth" name="img" required></td>
 
 								<% if(subCategoryId.length == 0) { %>
 								<% if(dropdownList.length > 0) { %>
@@ -282,7 +295,7 @@
 							<form role="form" method="post"
 								action="/admin-subCategory-add/<%= categoryId %>/<%= subCategoryId %>"
 								enctype="multipart/form-data">
-								<td><input type="file" name="img" required></td>
+								<td><input type="file" class="fileWidth" name="img" required></td>
 								<td style="display: none;"><input type="text" value="<%= displaySubCategoryId %>"
 										name="displaySubCategoryId" required></td>
 								<td><input type="text" name="name" required></td>
@@ -298,7 +311,7 @@
 				</div>
 				<br>
 				<hr style="border: 1px solid black;"><br>
-				<div style="overflow-x:auto;">
+				<div style="overflow-x:auto;" class="scrollbar-product">
 					<table>
 						<tr>
 							<th>Image</th>

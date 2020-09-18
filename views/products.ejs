@@ -125,20 +125,37 @@
 					<ul style="margin-top: 10px;" class="faq">
 						<%  for (var i = 0; i < productCategoryList.length; i++) { %>
 						<li>
+							<% if (productCategoryList[i].name == activeLinkName[2]) { %>
+							<div style="color: #FE9126;" class="main-heading-product"
+								value="<%= productCategoryList[i].name%>"
+								onclick="location.href='/user/<%= productCategoryList[i].name%>'">
+								<%= productCategoryList[i].displayName%></div>
+							<% } else { %>
 							<div class="main-heading-product" value="<%= productCategoryList[i].name%>"
 								onclick="location.href='/user/<%= productCategoryList[i].name%>'">
 								<%= productCategoryList[i].displayName%></div>
+							<% } %>
+
 							<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
-							<a style="padding: 0px 10px; float: right;" href="#"><i
-									class="fa fa-angle-down" aria-hidden="true"></i></a>
+							<a style="padding: 0px 10px; float: right;" href="#"><i class="fa fa-angle-down"
+									aria-hidden="true"></i></a>
 							<% } %>
 							<ul>
 								<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
 								<% for (var [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
+								<% if (value == activeLinkName[3]) { %>
+
+								<li style="font-size: 16px;"><a style="color: #FE9126;"
+										href="/user/<%= productCategoryList[i].name%>/<%= value%>"><i
+											class="fa fa-arrow-right" aria-hidden="true"></i><%= key%></a>
+								</li>
+								<% } else { %>
 								<li style="font-size: 16px;"><a
 										href="/user/<%= productCategoryList[i].name%>/<%= value%>"><i
 											class="fa fa-arrow-right" aria-hidden="true"></i><%= key%></a>
 								</li>
+								<% } %>
+
 								<% } %>
 								<% } %>
 							</ul>
@@ -152,7 +169,7 @@
 
 					<% for(var i = 0; i< products.length; i++){ %>
 					<div style="margin-bottom: 15px; padding: 0px 10px;" class="col-md-4 top_brand_left">
-						<div style="border-radius:10px;" class="hover14 column">
+						<div style="border-radius:10px; height: 325px;" class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid1">
 									<figure style="text-align: center;">

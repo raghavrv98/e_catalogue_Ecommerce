@@ -21,6 +21,8 @@ router.get('/user/:categoryId/:subCategoryId?', homeCtrl.showCategoryProductsUse
 
 router.post('/searchProduct/:categoryId', homeCtrl.showSearchProduct);
 
+router.post('/addSubCategory/:categoryId', homeCtrl.addSubCategory);
+
 router.get('/admin-category/:categoryId/:editId?', homeCtrl.showCategoryProducts);
 router.post('/admin-category-add/:categoryId/:editId?', homeCtrl.addCategoryProduct);
 

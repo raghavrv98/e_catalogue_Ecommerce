@@ -185,12 +185,25 @@
 					class="w3_agile_header">
 					<%= displaySubCategoryId%>
 				</h4> <% } else {%>
-					<form role="form" method="post"
+					<form style="display: inline;" role="form" method="post"
 					action="/addSubCategory/<%= categoryId %>"
 					enctype="multipart/form-data">
-				<span>Sub Category : </sapn>
+				<span>Sub Category : </span>
 					<input type="text" name="addSubCategory" required>
 				<input type="submit" value="Add">
+				</form>
+				<form style="display: inline;" role="form" method="post"
+					action="/deleteSubCategory/<%= categoryId %>"
+					enctype="multipart/form-data">
+				<span>Sub Category : </span>
+				<select value="" name="deleteSubCategory" required>
+					<option value="">Select</option>
+					<% for (var i = 0; i < dropdownList.length; i++) { %>
+					<option value="<%= dropdownList[i].name%>">
+						<%= dropdownList[i].displayName%></option>
+					<% } %>
+				</select>
+				<input type="submit" value="Delete">
 				</form>
 				<br><br>
 					<% } %>

@@ -737,6 +737,26 @@ module.exports = {
 
     },
 
+    deleteSubCategory: (req, res, next) => {
+
+        var categoryId = req.params.categoryId;
+
+        var deleteSubCategory = req.body.deleteSubCategory;
+
+        message = '';
+
+        var sql = `delete from product_categories where subCategory='${deleteSubCategory}';`;
+        var query = db.query(sql, function (err, row) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                res.redirect(`/admin-category/${categoryId}`);
+            }
+        });
+
+    },
+
     addSubCategoryProduct: (req, res, next) => {
         var editID = req.params.editId
         var categoryId = req.params.categoryId;

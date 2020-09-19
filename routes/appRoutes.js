@@ -23,6 +23,8 @@ router.post('/searchProduct/:categoryId', homeCtrl.showSearchProduct);
 
 router.post('/addSubCategory/:categoryId', homeCtrl.addSubCategory);
 
+router.post('/deleteSubCategory/:categoryId', homeCtrl.deleteSubCategory);
+
 router.get('/admin-category/:categoryId/:editId?', homeCtrl.showCategoryProducts);
 router.post('/admin-category-add/:categoryId/:editId?', homeCtrl.addCategoryProduct);
 

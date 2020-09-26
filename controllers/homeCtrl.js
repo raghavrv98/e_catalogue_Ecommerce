@@ -449,10 +449,14 @@ module.exports = {
     showCategoryProducts: (req, res, next) => {
 
         var categoryId = req.params.categoryId
-        var editId = req.params.editId
+        var editId = req.params.editId ? req.params.editId : ""
         var subCategoryId = ""
         var displayCategoryId = ""
         var displaySubCategoryId = ""
+        var editProduct = ""
+        var dropdownList = ""
+        var editRedirect = false
+        var categoryRedirect = true
         message = ""
 
         var autosearchList = []
@@ -513,47 +517,80 @@ module.exports = {
                 }
 
                 var dropdownlistObject = productCategoryList.find(val => val.name == categoryId)
-                var requiredPair = Object.entries(dropdownlistObject.subCategory)
-                var dropdownList = []
 
-                for (var i = 0; i < requiredPair.length; i++) {
-                    dropdownList.push({
-                        displayName: requiredPair[i][0],
-                        name: requiredPair[i][1]
+                if (dropdownlistObject) {
+                    var requiredPair = Object.entries(dropdownlistObject.subCategory)
+                    dropdownList = []
+
+                    for (var i = 0; i < requiredPair.length; i++) {
+                        dropdownList.push({
+                            displayName: requiredPair[i][0],
+                            name: requiredPair[i][1]
+                        })
+                    }
+                    displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
+
+                    var sql = `SELECT * FROM ${categoryId}`;
+                    var query = db.query(sql, function (err, categoryList) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        }
+                        else {
+
+                            if (editId.length > 0) {
+                                editProduct = categoryList.find(val => {
+                                    if (val.id == editId) {
+                                        return val
+                                    }
+                                })
+                                if (!editProduct) {
+                                    editRedirect = true;
+                                    message = "Edit Id does not exists";
+                                }
+                            }
+
+                            var session = req.session.userId;
+
+                            res.render('admin', {
+                                message,
+                                productCategoryList,
+                                products: categoryList,
+                                editProduct,
+                                categoryId,
+                                subCategoryId,
+                                displayCategoryId,
+                                displaySubCategoryId,
+                                dropdownList,
+                                autosearchList,
+                                session,
+                                editRedirect,
+                                categoryRedirect
+                            });
+                        }
                     })
                 }
+                else {
+                    message = "Category does not exist"
 
-                displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
+                    var session = req.session.userId;
 
-                var sql = `SELECT * FROM ${categoryId}`;
-                var query = db.query(sql, function (err, categoryList) {
-                    if (err) {
-                        return res.status(500).send(err);
-                    }
-                    else {
-                        var editProduct = categoryList.find(val => {
-                            if (val.id == editId) {
-                                return val
-                            }
-                        })
+                    res.render('admin', {
+                        message,
+                        productCategoryList,
+                        categoryId,
+                        subCategoryId,
+                        displayCategoryId,
+                        displaySubCategoryId,
+                        dropdownList,
+                        autosearchList,
+                        session,
+                        editRedirect,
+                        editProduct,
+                        products: [],
+                        categoryRedirect
+                    });
 
-                        var session = req.session.userId;
-
-                        res.render('admin', {
-                            message,
-                            productCategoryList,
-                            products: categoryList,
-                            editProduct,
-                            categoryId,
-                            subCategoryId,
-                            displayCategoryId,
-                            displaySubCategoryId,
-                            dropdownList,
-                            autosearchList,
-                            session
-                        });
-                    }
-                })
+                }
             }
         })
     },
@@ -561,10 +598,13 @@ module.exports = {
 
     showSubCategoryProducts: (req, res, next) => {
         var categoryId = req.params.categoryId
-        var editId = req.params.editId
+        var editId = req.params.editId ? req.params.editId : ""
         var subCategoryId = req.params.subCategoryId
         var displayCategoryId = ""
         var displaySubCategoryId = ""
+        var editProduct = ""
+        var editRedirect = false
+        var categoryRedirect = false
         message = ""
 
         var autosearchList = []
@@ -631,7 +671,12 @@ module.exports = {
                         return key
                     }
                 })
-                displaySubCategoryId = requiredPair[0]
+                if (requiredPair) {
+                    displaySubCategoryId = requiredPair[0];
+                }
+                else {
+                    message = "Sub Category does not exist"
+                }
 
                 var sql = `SELECT * FROM ${categoryId} where subCategory ='${subCategoryId}'`;
                 var query = db.query(sql, function (err, categoryList) {
@@ -639,11 +684,19 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        var editProduct = categoryList.find(val => {
-                            if (val.id == editId) {
-                                return val
+
+                        if (editId.length > 0) {
+                            editProduct = categoryList.find(val => {
+                                if (val.id == editId) {
+                                    return val
+                                }
+                            })
+                            if (!editProduct) {
+                                editRedirect = true;
+                                message = "Edit Id does not exists";
                             }
-                        })
+                        }
+
                         var session = req.session.userId;
 
                         res.render('admin', {
@@ -656,7 +709,9 @@ module.exports = {
                             displayCategoryId,
                             displaySubCategoryId,
                             autosearchList,
-                            session
+                            session,
+                            editRedirect,
+                            categoryRedirect
                         });
                     }
                 })
@@ -712,7 +767,7 @@ module.exports = {
         var categoryId = req.params.categoryId;
 
         var addSubCategory = req.body.addSubCategory.trim()
-        var addSubCategoryHeading = addSubCategory.trim().replace(/&/gi, '_').replace(/ /gi, "")
+        var addSubCategoryHeading = addSubCategory.trim().replace(/&/gi, '_').replace(/ /gi, "").replace(/\//gi, "").replace(/-/gi, "")
 
         message = '';
 

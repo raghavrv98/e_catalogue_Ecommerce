@@ -41,9 +41,10 @@
 	</script>
 	<!-- start-smoth-scrolling -->
 	<style>
-		.fileWidth{
+		.fileWidth {
 			width: 170px;
 		}
+
 		table {
 			border-collapse: collapse;
 			border-spacing: 0;
@@ -146,9 +147,33 @@
 	<div style="padding-top:10px;" class="products">
 		<div class="container">
 			<h2 style="margin-bottom : 40px;" class="w3_agile_header"><%= displayCategoryId%></h2>
-			
+
 			<% if (message.length > 0) { %>
-			<div class="alert alert-success col-sm-12"><%= message %></div>
+			<% if (categoryRedirect) { %>
+			<% if (editRedirect) { %>
+			<div class="alert alert-danger col-sm-12"><%= message %><span style="float: right; cursor: pointer;"
+					onclick="location.href='/admin-category/<%= categoryId%>'"><i class="fa fa-times"
+						aria-hidden="true"></span></i>
+			</div>
+			<% } else { %>
+			<div class="alert alert-danger col-sm-12"><%= message %><span style="float: right; cursor: pointer;"
+					onclick="location.href='/admin-category/new_arrivals'"><i class="fa fa-times"
+						aria-hidden="true"></span></i>
+			</div>
+			<% } %>
+			<% } else { %>
+			<% if (editRedirect) { %>
+			<div class="alert alert-danger col-sm-12"><%= message %><span style="float: right; cursor: pointer;"
+					onclick="location.href='/admin-subCategory/<%= categoryId%>/<%= subCategoryId%>'"><i
+						class="fa fa-times" aria-hidden="true"></span></i>
+			</div>
+			<% } else { %>
+			<div class="alert alert-danger col-sm-12"><%= message %><span style="float: right; cursor: pointer;"
+					onclick="location.href='/admin-category/<%= categoryId%>'"><i class="fa fa-times"
+						aria-hidden="true"></span></i>
+			</div>
+			<% } %>
+			<% } %>
 			<% } %>
 
 
@@ -161,9 +186,10 @@
 							<div class="main-heading-product" value="<%= productCategoryList[i].name%>"
 								onclick="location.href='/admin-category/<%= productCategoryList[i].name%>'">
 								<%= productCategoryList[i].displayName%></div>
+
 							<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
-							<a style="padding: 0px 10px; float: right;" href="#"><i
-									class="fa fa-angle-down" aria-hidden="true"></i></a>
+							<a style="padding: 0px 10px; float: right;" href="#"><i class="fa fa-angle-down"
+									aria-hidden="true"></i></a>
 							<% } %>
 							<ul>
 								<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
@@ -185,32 +211,40 @@
 					class="w3_agile_header">
 					<%= displaySubCategoryId%>
 				</h4> <% } else {%>
-					<div class="col-md-6 products-left">
-					<form style="display: inline;" role="form" method="post"
-					action="/addSubCategory/<%= categoryId %>"
-					enctype="multipart/form-data">
-				<span>Sub Category : </span>
-					<input style="width: 43%;" type="text" name="addSubCategory" required>
-				<input type="submit" value="Add">
-				</form>
+				<div class="col-md-6 products-left">
+					<form style="display: inline;" role="form" method="post" action="/addSubCategory/<%= categoryId %>"
+						enctype="multipart/form-data">
+						<span>Sub Category : </span>
+						<input style="width: 43%;"
+							title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
+							pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$" type="text" name="addSubCategory" required>
+							<% if (message.length > 0) { %>
+								<input disabled type="submit" value="Add">
+								<% } else { %>
+									<input type="submit" value="Add">
+								<% } %>
+					</form>
 				</div>
 				<div class="col-md-6 products-left">
-				<form style="display: inline;" role="form" method="post"
-					action="/deleteSubCategory/<%= categoryId %>"
-					enctype="multipart/form-data">
-				<span>Sub Category : </span>
-				<select style="width: 37%; height: 28px;" value="" name="deleteSubCategory" required>
-					<option value="">Select</option>
-					<% for (var i = 0; i < dropdownList.length; i++) { %>
-					<option value="<%= dropdownList[i].name%>">
-						<%= dropdownList[i].displayName%></option>
-					<% } %>
-				</select>
-				<input type="submit" value="Delete">
-				</form>
-			</div>
+					<form style="display: inline;" role="form" method="post"
+						action="/deleteSubCategory/<%= categoryId %>" enctype="multipart/form-data">
+						<span>Sub Category : </span>
+						<select style="width: 37%; height: 28px;" value="" name="deleteSubCategory" required>
+							<option value="">Select</option>
+							<% for (var i = 0; i < dropdownList.length; i++) { %>
+							<option value="<%= dropdownList[i].name%>">
+								<%= dropdownList[i].displayName%></option>
+							<% } %>
+						</select>
+						<% if (message.length > 0) { %>
+							<input disabled type="submit" value="Delete">
+							<% } else { %>
+								<input type="submit" value="Delete">
+							<% } %>
+					</form>
+				</div>
 				<br><br>
-					<% } %>
+				<% } %>
 
 				<div style="overflow-x:auto;">
 					<table>
@@ -231,8 +265,8 @@
 							<form role="form" method="post"
 								action="/admin-category-add/<%= categoryId %>/<%= editProduct.id%>"
 								enctype="multipart/form-data">
-								<td><input type="file" class="fileWidth" accept="image/*" value="<%= editProduct.img %>" name="img"
-										required></td>
+								<td><input type="file" class="fileWidth" accept="image/*" value="<%= editProduct.img %>"
+										name="img" required></td>
 
 								<% if(subCategoryId.length == 0) { %>
 								<% if(dropdownList.length > 0) { %>
@@ -255,7 +289,12 @@
 										name="actualPrice" required></td>
 								<td><input style="width: 75%;" type="number" value="<%= editProduct.cuttingPrice %>"
 										name="cuttingPrice"></td>
-								<td><input type="submit" value="Add/Update"></td>
+										<% if (message.length > 0) { %>
+										<td><input disabled type="submit" value="Add/Update"></td>
+										<% } else { %>
+											<td><input type="submit" value="Add/Update"></td>
+										<% } %>
+
 							</form>
 
 							<% } else { %>
@@ -265,14 +304,18 @@
 								enctype="multipart/form-data">
 								<td style="display: none;"><input type="text" value="<%= displaySubCategoryId %>"
 										name="displaySubCategoryId" required></td>
-								<td><input type="file" class="fileWidth" accept="image/*" value="<%= editProduct.img %>" name="img"
-										required></td>
+								<td><input type="file" class="fileWidth" accept="image/*" value="<%= editProduct.img %>"
+										name="img" required></td>
 								<td><input type="text" value="<%= editProduct.name %>" name="name" required></td>
 								<td><input style="width: 75%;" type="number" value="<%= editProduct.actualPrice %>"
 										name="actualPrice" required></td>
 								<td><input style="width: 75%;" type="number" value="<%= editProduct.cuttingPrice %>"
 										name="cuttingPrice"></td>
-								<td><input type="submit" value="Add/Update"></td>
+										<% if (message.length > 0) { %>
+											<td><input disabled type="submit" value="Add/Update"></td>
+											<% } else { %>
+												<td><input type="submit" value="Add/Update"></td>
+											<% } %>
 							</form>
 							<% } %>
 
@@ -303,7 +346,11 @@
 								<td><input type="text" name="name" required></td>
 								<td><input style="width: 75%;" type="number" name="actualPrice" required></td>
 								<td><input style="width: 75%;" type="number" name="cuttingPrice"></td>
-								<td><input type="submit" value="Add/Update"></td>
+								<% if (message.length > 0) { %>
+									<td><input disabled type="submit" value="Add/Update"></td>
+									<% } else { %>
+										<td><input type="submit" value="Add/Update"></td>
+									<% } %>
 							</form>
 
 							<% } else { %>
@@ -318,7 +365,11 @@
 								<td><input type="text" name="name" required></td>
 								<td><input style="width: 75%;" type="number" name="actualPrice" required></td>
 								<td><input style="width: 75%;" type="number" name="cuttingPrice"></td>
-								<td><input type="submit" value="Add/Update"></td>
+								<% if (message.length > 0) { %>
+									<td><input disabled type="submit" value="Add/Update"></td>
+									<% } else { %>
+										<td><input type="submit" value="Add/Update"></td>
+									<% } %>
 							</form>
 							<% } %>
 
@@ -343,7 +394,8 @@
 						</tr>
 						<% for(var i in products) { %>
 						<tr>
-							<td><img style="height: 40px;" src="http://www.atozonlinemart.com/uploads/<%= products[i].img%>">
+							<td><img style="height: 40px;"
+									src="http://www.atozonlinemart.com/uploads/<%= products[i].img%>">
 							</td>
 							<% if(subCategoryId.length == 0) { %>
 							<td><input disabled type="text" value="<%= products[i].displaySubCategory%>"></td>
@@ -360,7 +412,11 @@
 										value="<%= categoryId%>" type="text"></td>
 								<td style="display: none;"><input style="width: 75%;" name="subCategoryId"
 										value="<%= subCategoryId%>" type="text"></td>
-								<td><button type="submit">Edit</button></td>
+										<% if (message.length > 0) { %>
+											<td><button disabled type="submit">Edit</button></td>
+											<% } else { %>
+												<td><button type="submit">Edit</button></td>
+											<% } %>
 							</form>
 							<form role="form" method="post" action="/admin-delete" enctype="multipart/form-data">
 								<td style="display: none;"><input style="width: 75%;" name="deleteId"
@@ -369,9 +425,11 @@
 										value="<%= categoryId%>" type="text"></td>
 								<td style="display: none;"><input style="width: 75%;" name="subCategoryId"
 										value="<%= subCategoryId%>" type="text"></td>
-								<td><button type="submit"
-										onclick="return confirm('Are you sure you want to Delete?')">Delete</button>
-								</td>
+										<% if (message.length > 0) { %>
+											<td><button disabled type="submit">Delete</button></td>
+											<% } else { %>
+												<td><button type="submit" onclick="return confirm('Are you sure you want to Delete?')">Delete</button></td>
+											<% } %>
 							</form>
 						</tr>
 						<% } %>
